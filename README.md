@@ -66,4 +66,6 @@ homepage includes a navigation bar:
 - /employee/theater-configuration display a list of theaters, user can select theater, and configure the capacity of that theater. add or remove space from that theater
 - /employee/dashboard display the the movies Theater occupancy for the last 30/60/90 days, Summarized by location, Summarized by movies. Display a table, that includes all movies from last 90 days. able to display a graph of theater occupancy to Specific movie and a graph of  occupancy to location.
 
+![frontend-routing](frontend-routes.png)
+
 
