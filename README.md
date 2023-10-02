@@ -21,9 +21,13 @@ Helpful Links:
       - https://sjsu.instructure.com/courses/1570055/files/74025430?wrap=1 
   - Excel of team info:
       - https://docs.google.com/spreadsheets/d/1qowXku9R0LjOND2gilTmbdbIUMP-fOhZU7j70APLi4w/edit#gid=0
+   
+
+
+
 ## How to run our Python Flask Back-end:
-- Make sure you installed your project's Python interpreter with a virtual environment (venv)
-- Open a new terminal in your Python IDE, make sure the path is '<your path>\teamproject-team-alpha-1', activate your venv first with this command:
+- Make sure you installed your interpreter with a virtual environment (venv)
+- Open a new terminal in your IDE, make sure the path is '<your path>\teamproject-team-alpha-1', activate your venv first with this command:
 ```
 venv\Scripts\activate
 ```
@@ -31,12 +35,29 @@ venv\Scripts\activate
 ```
 pip install Flask
 ```
-- Install Flask Cors to enable interaction between our front-end and back-end:
+- Install Flask Cors to enable interaction between our local front-end and local back-end:
 ```
-pip install Flask
+pip install Flask-Cors
 ```
-## Front-end routing
+- In your terminal, cd into the path '<your path>\teamproject-team-alpha-1\backend\app'.
+- Now you can start your backend locally with:
+```
+flask run
+```
 
+
+## How to run our React Front-end:
+- Open a new terminal in your IDE, cd into the path '<your path>\teamproject-team-alpha-1\frontend', then install react-router-dom
+```
+npm install react-router-dom
+```
+- Now you can start your frontend locally with:
+```
+npm run start
+``` 
+
+
+## Front-end routing
 ### FirstLayer: /
 	/ 
 	/404
