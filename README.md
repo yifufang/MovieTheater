@@ -21,6 +21,20 @@ Helpful Links:
       - https://sjsu.instructure.com/courses/1570055/files/74025430?wrap=1 
   - Excel of team info:
       - https://docs.google.com/spreadsheets/d/1qowXku9R0LjOND2gilTmbdbIUMP-fOhZU7j70APLi4w/edit#gid=0
+## How to run our Python Flask Back-end:
+- Make sure you installed your project's Python interpreter with a virtual environment (venv)
+- Open a new terminal in your Python IDE, make sure the path is '<your path>\teamproject-team-alpha-1', activate your venv first with this command:
+```
+venv\Scripts\activate
+```
+- Install Python Flask:
+```
+pip install Flask
+```
+- Install Flask Cors to enable interaction between our front-end and back-end:
+```
+pip install Flask
+```
 ## Front-end routing
 
 ### FirstLayer: /
