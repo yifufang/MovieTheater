@@ -21,6 +21,77 @@ Helpful Links:
       - https://sjsu.instructure.com/courses/1570055/files/74025430?wrap=1 
   - Excel of team info:
       - https://docs.google.com/spreadsheets/d/1qowXku9R0LjOND2gilTmbdbIUMP-fOhZU7j70APLi4w/edit#gid=0
+## Backend
+```
+Backend/
+├── app/
+│   ├── __init__.py
+│   ├── routes.py
+│   ├── templates/
+│   │   ├── index.html
+│   ├── static/
+│   │   ├── css/
+│   │   ├── img/
+├── requirements.txt
+├── app.py
+```
+#### How to run our Python Flask Back-end:
+- Make sure you installed your interpreter with a virtual environment '<your path>\teamproject-team-alpha-1\Backend' (venv)
+```
+python -m venv myenv
+```
+- make sure the path is '<your path>\teamproject-team-alpha-1\Backend', activate your venv first with this command:
+```
+venv\Scripts\activate
+```
+- then run:
+```
+ pip install -r requirements.txt
+```
+- Now you can start your backend locally with:
+```
+python app.py
+```
+- when you finsih the session of programming. deactivate the virtual environemnt:
+```
+deactivate
+```
+#### Useful commands for backend:
+- when you installed some library in your virtual environment, and you want to include it into requirements.txt. this command automatically detects the library or dependencies in your environment and add it to requirements.txt
+```
+pip freeze > requirements.txt
+```
+## Frontend
+```
+myapp/
+├── public/
+│   ├── index.html
+│   ├── favicon.ico
+├── src/
+│   ├── index.js
+│   ├── App.js
+│   ├── components/
+│   │   ├── Header.js
+│   ├── pages/
+│   │   ├── Home.js
+│   │   ├── Auth/
+│   │   │   ├──log-in.js
+│   │   │   ├──sign-up.js
+│   ├── index.js
+├── package.json
+├── package-lock.json
+├── README.md
+```
+#### How to run our React Front-end:
+- install node.js. https://nodejs.org/en
+- after installation of node.js. run the following command to install the dependencies and neccessary files for this project.
+```
+npm install
+```
+- Now you can start your frontend locally with:
+```
+npm start
+``` 
 ## Front-end routing
 
 ### FirstLayer: /
