@@ -47,13 +47,14 @@ flask run
 
 
 ## How to run our React Front-end:
-- Open a new terminal in your IDE, cd into the path '<your path>\teamproject-team-alpha-1\frontend', then install react-router-dom
+- install node.js. https://nodejs.org/en
+- after installation of node.js. run the following command to install the dependencies and neccessary files for this project.
 ```
-npm install react-router-dom
+npm install
 ```
 - Now you can start your frontend locally with:
 ```
-npm run start
+npm start
 ``` 
 
 
@@ -73,7 +74,7 @@ homepage includes a navigation bar:
 - /view-membership display the options to buy regular or premium membership
 - /book-tickets buy moview tickets with a  online service fee ($1.50 per ticket). display moview title, time, theater name, location, user can choose and buy.
 ---------------------------
-### SecondLayer: /auth
+### SecondLayer:
 ##### authentication
 	/auth
 	/auth/log-in
