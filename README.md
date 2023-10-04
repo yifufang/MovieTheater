@@ -21,8 +21,50 @@ Helpful Links:
       - https://sjsu.instructure.com/courses/1570055/files/74025430?wrap=1 
   - Excel of team info:
       - https://docs.google.com/spreadsheets/d/1qowXku9R0LjOND2gilTmbdbIUMP-fOhZU7j70APLi4w/edit#gid=0
-## Front-end routing
+   
 
+
+
+## How to run our Python Flask Back-end:
+- Make sure you installed your interpreter with a virtual environment '<your path>\teamproject-team-alpha-1\Backend' (venv)
+```
+python -m venv myenv
+```
+- make sure the path is '<your path>\teamproject-team-alpha-1\Backend', activate your venv first with this command:
+```
+venv\Scripts\activate
+```
+- then run:
+```
+ pip install -r requirements.txt
+```
+- Now you can start your backend locally with:
+```
+python app.py
+```
+- when you finsih the session of programming. deactivate the virtual environemnt:
+```
+deactivate
+```
+#### Useful commands for backend:
+- when you installed some library in your virtual environment, and you want to include it into requirements.txt. this command automatically detects the library or dependencies in your environment and add it to requirements.txt
+```
+pip freeze > requirements.txt
+```
+
+## How to run our React Front-end:
+- install node.js. https://nodejs.org/en
+- after installation of node.js. run the following command to install the dependencies and neccessary files for this project.
+```
+npm install
+```
+- Now you can start your frontend locally with:
+```
+npm start
+``` 
+
+
+## Front-end routing
 ### FirstLayer: /
 	/ 
 	/404
@@ -38,7 +80,7 @@ homepage includes a navigation bar:
 - /view-membership display the options to buy regular or premium membership
 - /book-tickets buy moview tickets with a  online service fee ($1.50 per ticket). display moview title, time, theater name, location, user can choose and buy.
 ---------------------------
-### SecondLayer: /auth
+### SecondLayer:
 ##### authentication
 	/auth
 	/auth/log-in
@@ -67,5 +109,3 @@ homepage includes a navigation bar:
 - /employee/dashboard display the the movies Theater occupancy for the last 30/60/90 days, Summarized by location, Summarized by movies. Display a table, that includes all movies from last 90 days. able to display a graph of theater occupancy to Specific movie and a graph of  occupancy to location.
 
 ![frontend-routing](frontend-routes.png)
-
-
