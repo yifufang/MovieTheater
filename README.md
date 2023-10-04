@@ -26,25 +26,31 @@ Helpful Links:
 
 
 ## How to run our Python Flask Back-end:
-- Make sure you installed your interpreter with a virtual environment (venv)
-- Open a new terminal in your IDE, make sure the path is '<your path>\teamproject-team-alpha-1', activate your venv first with this command:
+- Make sure you installed your interpreter with a virtual environment '<your path>\teamproject-team-alpha-1\Backend' (venv)
+```
+python -m venv myenv
+```
+- make sure the path is '<your path>\teamproject-team-alpha-1\Backend', activate your venv first with this command:
 ```
 venv\Scripts\activate
 ```
-- Install Python Flask:
+- then run:
 ```
-pip install Flask
+ pip install -r requirements.txt
 ```
-- Install Flask Cors to enable interaction between our local front-end and local back-end:
-```
-pip install Flask-Cors
-```
-- In your terminal, cd into the path '<your path>\teamproject-team-alpha-1\backend\app'.
 - Now you can start your backend locally with:
 ```
-flask run
+python app.py
 ```
-
+- when you finsih the session of programming. deactivate the virtual environemnt:
+```
+deactivate
+```
+#### Useful commands for backend:
+- when you installed some library in your virtual environment, and you want to include it into requirements.txt. this command automatically detects the library or dependencies in your environment and add it to requirements.txt
+```
+pip freeze > requirements.txt
+```
 
 ## How to run our React Front-end:
 - install node.js. https://nodejs.org/en
