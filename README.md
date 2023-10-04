@@ -21,7 +21,8 @@ Helpful Links:
       - https://sjsu.instructure.com/courses/1570055/files/74025430?wrap=1 
   - Excel of team info:
       - https://docs.google.com/spreadsheets/d/1qowXku9R0LjOND2gilTmbdbIUMP-fOhZU7j70APLi4w/edit#gid=0
-## Backend
+
+## Backend Project Layout
 ```
 Backend/
 ├── app/
@@ -35,7 +36,8 @@ Backend/
 ├── requirements.txt
 ├── app.py
 ```
-#### How to run our Python Flask Back-end:
+
+## How to run our Python Flask Back-end:
 - Make sure you installed your interpreter with a virtual environment '<your path>\teamproject-team-alpha-1\Backend' (venv)
 ```
 python -m venv myenv
@@ -61,7 +63,8 @@ deactivate
 ```
 pip freeze > requirements.txt
 ```
-## Frontend
+
+## Frontend Project Layout
 ```
 myapp/
 ├── public/
@@ -82,6 +85,7 @@ myapp/
 ├── package-lock.json
 ├── README.md
 ```
+  
 #### How to run our React Front-end:
 - install node.js. https://nodejs.org/en
 - after installation of node.js. run the following command to install the dependencies and neccessary files for this project.
@@ -94,6 +98,19 @@ npm start
 ``` 
 ## Front-end routing
 
+## How to run our React Front-end:
+- install node.js. https://nodejs.org/en
+- after installation of node.js. run the following command to install the dependencies and neccessary files for this project.
+```
+npm install
+```
+- Now you can start your frontend locally with:
+```
+npm start
+``` 
+
+
+## Front-end routing
 ### FirstLayer: /
 	/ 
 	/404
@@ -109,7 +126,7 @@ homepage includes a navigation bar:
 - /view-membership display the options to buy regular or premium membership
 - /book-tickets buy moview tickets with a  online service fee ($1.50 per ticket). display moview title, time, theater name, location, user can choose and buy.
 ---------------------------
-### SecondLayer: /auth
+### SecondLayer:
 ##### authentication
 	/auth
 	/auth/log-in
