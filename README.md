@@ -50,7 +50,7 @@ venv\Scripts\activate
 ```
 - Now you can start your backend locally with:
 ```
-python app.py
+flask run
 ```
 - when you finsih the session of programming. deactivate the virtual environemnt:
 ```
