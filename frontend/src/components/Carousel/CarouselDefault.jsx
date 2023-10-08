@@ -5,7 +5,7 @@ import {
   Button,
 } from "@material-tailwind/react";
 
-export default function CarouselCustomArrows() {
+export default function CarouselDefault() {
   return (
     <Carousel
       prevArrow={({ handlePrev }) => (
