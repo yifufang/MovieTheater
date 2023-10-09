@@ -18,13 +18,12 @@ export default function App() {
   }
 
   return (
-    <div>
-      <Header />
+    <div className="App">
       {
         currentForm === "login" ? <Login onFormSwitch={toggleForm} /> : <Register onFormSwitch={toggleForm} />
       }
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/test" element={<Test />} />
       </Routes>
     </div>

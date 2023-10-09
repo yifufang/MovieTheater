@@ -1,4 +1,4 @@
-import React, { useState }from "react";
+import React, { useState } from "react";
 
 import NavItem from "./navItem";
 
@@ -13,7 +13,7 @@ export default function NavBar() {
         <NavItem content="Membership" href="/membership" />
         <NavItem content="About" href="/about" />
         <NavItem content="Contact" href="/contact" />
-        <a href="/signin">Sign In</a>
+        <a href="/Login">Login</a>
       </ul>
     </nav>
   );

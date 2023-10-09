@@ -13,14 +13,13 @@ export const Login = (props) => {
         // <>Login</>
         <div className="auth-form-container">
             <form className="login-form" onSubmit={handleSubmit}>
-                <label htmlFor="email">email</label>
+                <label htmlFor="email">E-mail</label>
                 <input value={email} onChange={(evnt) => setEmail(evnt.target.value)} type="email" placeholder="myemail@gmail.com" id="email" name="email" />
-                <label htmlFor="password">password</label>
+                <label htmlFor="password">Password</label>
                 <input value={password} onChange={(evnt) => setPassword(evnt.target.value)} type="password" placeholder="********" id="password" name="password" />
-                <button type="submit"> Login</button>
+                <button type="submit">Login</button>
             </form>
-            <>Don't have an account?</>
-            <button onClick={() => props.onFormSwitch('register')}>Register here</button>
+            <button className="link-button" onClick={() => props.onFormSwitch('register')}>Don't have an account? Register here</button>
         </div>
     )
 }
