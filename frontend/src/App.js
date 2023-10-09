@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { Login } from "./pages/Login"
-import { Signup } from "./pages/Signup"
+import { Register } from "./pages/Register"
 
 import Header from "./components/header";
 import Home from "./pages/Home";
@@ -11,7 +11,7 @@ import Test from "./pages/Test";
 
 export default function App() {
 
-  const[currentForm, setCurrentForm] = useState("login");
+  const [currentForm, setCurrentForm] = useState("login");
 
   const toggleForm = (formName) => {
     setCurrentForm(formName)
@@ -20,9 +20,9 @@ export default function App() {
   return (
     <div>
       <Header />
-        {
-        currentForm === "login" ? <Login onFormSwitch={toggleForm} /> : <Signup onFormSwitch={toggleForm}/>
-        }
+      {
+        currentForm === "login" ? <Login onFormSwitch={toggleForm} /> : <Register onFormSwitch={toggleForm} />
+      }
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/test" element={<Test />} />
