@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Routes, Route, useLocation, Outlet} from "react-router-dom";
 import { Link } from 'react-router-dom';
 import "./App.css";
-import { Login } from "./pages/Login"
-import { Register } from "./pages/Register"
+import { Login } from "./pages/auth/Login"
+import { Register } from "./pages/auth/Register"
 
 //pagelayout component contains the header and footer that apears on all pages of under / and its children
 import Pagelayout from "./components/Pagelayout/Pagelayout";
