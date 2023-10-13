@@ -128,7 +128,7 @@ npm start
     /View-membership
     /book-tickets
 
-- / homepage display different theaters, location, with current moview schedule, and upcoming moview (slide?)
+- / homepage display different theaters, location, with current movie schedule, and upcoming movie (slide?)
   homepage includes a navigation bar: - Home ----> / - membership ---->/view-membership - book tickets ----> /book-tickets - log in ----> /auth/log-in
 - /404 error page
 - /view-membership display the options to buy regular or premium membership
