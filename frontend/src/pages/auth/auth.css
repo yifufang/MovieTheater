@@ -1,0 +1,48 @@
+.auth {
+    text-align: center;
+    flex-direction: column;
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-image: url("https://img.freepik.com/free-vector/red-realistic-curtains-with-text-space_1017-38834.jpg");
+    background-size: cover;
+}
+.auth-form-container{
+    background-color: #d8dadade;
+}
+.auth-form-container,
+.login-form,
+.register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media screen and (min-width: 680px) {
+    .auth-form-container {
+        padding: 5rem;
+        border: 1px solid rgb(0, 0, 0);
+        border-radius: 20px;
+        margin: 2rem;
+        width: 50%;
+        
+    }
+}
+label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+input {
+    border: none;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.link-button {
+    background: none;
+    color: rgb(0, 0, 0);
+    text-decoration: underline;
+}
