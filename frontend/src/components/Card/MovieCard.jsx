@@ -8,21 +8,23 @@ export default function MovieCard({
   release_year,
   i,
 }) {
+  // convert title separated by space to separated by underscore
+  let href_title = title.replace(/[^a-zA-Z ]/g, "").toLowerCase().replace(/ /g,"_")
   return (
     <div className="rounded overflow-hidden shadow-lg p-5" key={i}>
-      <a className="" href="">
+      <a className="" href={"/browse-movie/" + href_title}>
         <img
           className="object-contain h-80 w-80 hover:scale-105"
           src={source}
           alt={title}
         ></img>
-        <h1 className="text-lg">{title}</h1>
+        <h1 className="mt-3 text-lg font-bold">{title}</h1>
       </a>
-      <p className="text-gray-800 text-sm">
+      <p className="text-gray-600 font-bold text-sm">
         {duration} | {rating}
       </p>
-      <p className="text-gray-800 text-sm">Released {release_year}</p>
-      <button className="bg-red-500 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">
+      <p className="text-gray-600 font-bold text-sm">Released {release_year}</p>
+      <button className="bg-red-500 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-3xl">
         Get Tickets
       </button>
     </div>
