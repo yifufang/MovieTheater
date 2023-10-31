@@ -16,7 +16,7 @@ export default function NavBar() {
         <a className="mr-5 hover:text-gray-900" href="/membership">
           Membership
         </a>
-        <a className="mr-5 hover:text-gray-900">Book Tickets</a>
+        <a className="mr-5 hover:text-gray-900" href="/browse-movie">Book Tickets</a>
         <a className="mr-5 hover:text-gray-900" href="/contact-us">Contact Us</a>
         <a className="mr-5 hover:text-gray-900" href="/about-us">About Us</a>
       </nav>

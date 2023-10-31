@@ -1,0 +1,102 @@
+[
+  {
+    "title": "Five Nights at Freddy's",
+    "schedule": ["12:30pm", "3:15pm", "6:00pm", "9:00pm"],
+    "description": "Can you survive five nights? The terrifying horror game phenomenon becomes a blood-chilling cinematic event, as Blumhouse-- the producer of M3GAN, The Black Phone and The Invisible Man-- brings Five Nights at Freddy's to the big screen. The film follows a troubled security guard as he begins working at Freddy Fazbear's Pizza. While spending his first night on the job, he realizes the night shift at Freddy's won't be so easy to make it through. AMC has been advised that this film contains sequences with flashing lights that may affect photosensitive viewers.",
+    "release_year": "2023",
+    "duration": "1 HR 50 MIN",
+    "rating": "PG13",
+    "genre": "HORROR",
+    "img_url": "../../Statics/movieImages/five_nights_at_freddys.jpg"
+  },
+  {
+    "title": "Killers of the Flower Moon",
+    "schedule": ["2:00pm", "6:30pm"],
+    "description": "Based on David Grann's broadly lauded best-selling book, KILLERS OF THE FLOWER MOON is set in 1920s Oklahoma and depicts the serial murder of members of the oil-wealthy Osage Nation, a string of brutal crimes that came to be known as the Reign of Terror.",
+    "release_year": "2023",
+    "duration": "3 HR 26 MIN",
+    "rating": "PG13",
+    "genre": "DRAMA",
+    "img_url": "../../Statics/movieImages/killers_of_the_flower_moon.jpg"
+  },
+  {
+    "title": "After Death",
+    "schedule": ["12:35pm", "3:30pm", "6:30pm", "9:20pm"],
+    "description": "After Death is a gripping feature film that explores the afterlife based on real near-death experiences, conveyed by scientists, authors, and survivors. From the New York Times bestselling authors who brought you titles like 90 Minutes in Heaven, Imagine Heaven, and To Heaven and Back, emerges a cinematic peek beyond the veil that examines the spiritual and scientific dimensions of mortality, inviting viewers to contemplate the possibility of life after death.",
+    "release_year": "2023",
+    "duration": "2 HR",
+    "rating": "PG13",
+    "genre": "DOCUMENTARY",
+    "img_url": "../../Statics/movieImages/after_death.jpg"
+  },
+  {
+    "title": "Freelance",
+    "schedule": ["6:45pm"],
+    "description": "An ex-special forces operator takes a job to provide security for a journalist as she interviews a dictator, but, a military coup breaks out in the middle of the interview, they are forced to escape into the jungle where they must survive.",
+    "release_year": "2023",
+    "duration": "1 HR 48 MIN",
+    "rating": "PG13",
+    "genre": "ACTION",
+    "img_url": "../../Statics/movieImages/freelance.jpg"
+  },
+  {
+    "title": "The Exorcist: Believer",
+    "schedule": ["6:45pm"],
+    "description": "Exactly 50 years ago this fall, the most terrifying horror film in history landed on screens, shocking audiences around the world. Now, on Friday, October 13, a new chapter begins. From Blumhouse and director David Gordon Green, who shattered the status quo with their resurrection of the Halloween franchise, comes The Exorcist: Believer. Since the death of his pregnant wife in a Haitian earthquake 12 years ago, Victor Fielding (Tony winner and Oscar® nominee Leslie Odom, Jr.; One Night in Miami, Hamilton) has raised their daughter, Angela (Lidya Jewett, Good Girls) on his own. But when Angela and her friend Katherine (newcomer Olivia Marcum), disappear in the woods, only to return three days later with no memory of what happened to them, it unleashes a chain of events that will force Victor to confront the nadir of evil and, in his terror and desperation, seek out the only person alive who has witnessed anything like it before: Chris MacNeil. For the first time since the 1973 film, Oscar® winner Ellen Burstyn reprises her iconic role as Chris MacNeil, an actress who has been forever altered by what happened to her daughter Regan five decades before. AMC has been advised that this film contains sequences with flashing lights that may affect photosensitive viewers.",
+    "release_year": "2023",
+    "duration": "1 HR 51 MIN",
+    "rating": "R",
+    "genre": "HORROR",
+    "img_url": "../../Statics/movieImages/the_exorcist_believer.jpg"
+  },
+  {
+    "title": "Priscilla",
+    "schedule": ["9:45pm"],
+    "description": "When teenage Priscilla Beaulieu meets Elvis Presley at a party, the man who is already a meteoric rock-and-roll superstar becomes someone entirely unexpected in private moments: a thrilling crush, an ally in loneliness, a vulnerable best friend. Through Priscilla's eyes, Sofia Coppola tells the unseen side of a great American myth in Elvis and Priscilla's long courtship and turbulent marriage, from a German army base to his dream-world estate at Graceland, in this deeply felt and ravishingly detailed portrait of love, fantasy, and fame.",
+    "release_year": "2023",
+    "duration": "1 HR 50 MIN",
+    "rating": "R",
+    "genre": "DRAMA",
+    "img_url": "../../Statics/movieImages/priscilla.jpg"
+  },
+  {
+    "title": "Miracle in East Texas",
+    "schedule": ["7:00pm"],
+    "description": "Based on actual accounts, this is the tale of two aging con-men at the dawn of the Great Depression and the biggest oil strike in the history of the world. Irving Tanner, Jr. (Lou Gossett, Jr.) recounts the 1930 legend. Times are hard, when the unluckiest wildcatter in the world, Dad Everett (John Ratzenberger) teams up with Doc Boyd (Kevin Sorbo), a charming snake oil salesman. Together they convince several new widows (Sam Sorbo, Paula Boudreau, and others) to invest in their worthless oil wells. Then, the unthinkable happens! Our two Casanovas face a challenge: declare another dry hole for a clean escape, or bring the well in like genuine oil men, and likely spend the rest of their lives in jail? Meanwhile, some of their angry investors (Tyler Mane) are fixing to do something about their scheming. This mostly true story will make you laugh, shed a tear, and give you pride in the God-Blessed American way.Based on actual accounts, this is the tale of two aging con-men at the dawn of the Great Depression and the biggest oil strike in the history of the world. Irving Tanner, Jr. (Lou Gossett, Jr.) recounts the 1930 legend. Times are hard, when the unluckiest wildcatter in the world, Dad Everett (John Ratzenberger) teams up with Doc Boyd (Kevin Sorbo), a charming snake oil salesman. Together they convince several new widows (Sam Sorbo, Paula Boudreau, and others) to invest in their worthless oil wells. Then, the unthinkable happens! Our two Casanovas face a challenge: declare another dry hole for a clean escape, or bring the well in like genuine oil men, and likely spend the rest of their lives in jail? Meanwhile, some of their angry investors (Tyler Mane) are fixing to do something about their scheming. This mostly true story will make you laugh, shed a tear, and give you pride in the God-Blessed American way.",
+    "release_year": "2023",
+    "duration": "2 HR 10 MIN",
+    "rating": "PG",
+    "genre": "SPECIAL EVENTS",
+    "img_url": "../../Statics/movieImages/miracle_in_east_texas.jpg"
+  },
+  {
+    "title": "Paw Patrol: The Mighty Movie",
+    "schedule": ["12:30pm", "2:45pm", "5:00pm"],
+    "description": "When a magical meteor crash lands in Adventure City, it gives the PAW Patrol pups superpowers, transforming them into The MIGHTY PUPS! For Skye, the smallest member of the team, her new powers are a dream come true. But things take a turn for the worse when the pups' archrival Humdinger breaks out of jail and teams up with Victoria Vance, a meteor-obsessed mad scientist, to steal the superpowers and turn themselves into supervillains. With the fate of Adventure City hanging in the balance, the Mighty Pups have to stop the supervillains before it's too late, and Skye will need to learn that even the smallest pup can make the biggest difference.",
+    "release_year": "2023",
+    "duration": "1 HR 28 MIN",
+    "rating": "PG",
+    "genre": "ANIMATION",
+    "img_url": "../../Statics/movieImages/paw_patrol_the_mighty_movie.jpg"
+  },
+  {
+    "title": "Saw X",
+    "schedule": ["1:05pm", "4:05pm", "6:35pm", "9:30pm"],
+    "description": "John Kramer (Tobin Bell) is back. The most chilling installment of the SAW franchise yet explores the untold chapter of Jigsaw's most personal game. Set between the events of SAW I and II, a sick and desperate John travels to Mexico for a risky and experimental medical procedure in hopes of a miracle cure for his cancer -- only to discover the entire operation is a scam to defraud the most vulnerable. Armed with a newfound purpose, John returns to his work, turning the tables on the con artists in his signature visceral way through a series of ingenious and terrifying traps.",
+    "release_year": "2023",
+    "duration": "1 HR 58 MIN",
+    "rating": "R",
+    "genre": "HORROR",
+    "img_url": "../../Statics/movieImages/saw_x.jpg"
+  },
+  {
+    "title": "The Nun II",
+    "schedule": ["10:00am", "12:05pm", "6:35pm", "8:35pm"],
+    "description": "1956 – France. A priest is murdered. An evil is spreading. The sequel to the worldwide smash hit follows Sister Irene as she once again comes face-to-face with Valak, the demon nun.",
+    "release_year": "2023",
+    "duration": "1 HR 50 MIN",
+    "rating": "R",
+    "genre": "HORROR",
+    "img_url": "../../Statics/movieImages/the_nun_2.jpg"
+  }
+]

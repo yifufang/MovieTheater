@@ -9,6 +9,7 @@ import Pagelayout from "./components/Pagelayout/Pagelayout";
 
 //import chidlren pages of /
 import Membership from "./pages/Membership";
+import BrowseMovies from "./pages/bookTickets/browseMovies";
 import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
 import Home from "./pages/Home";
@@ -23,6 +24,7 @@ export default function App() {
         <Route>
           <Route path="/" element={<Pagelayout><Home /></Pagelayout>} />
           <Route path="/membership" element={<Pagelayout><Membership /></Pagelayout>} />
+          <Route path="/browse-movie" element={<Pagelayout><BrowseMovies /></Pagelayout>} />
           <Route path="/contact-us" element={<Pagelayout><ContactUs /></Pagelayout>} />
           <Route path="/about-us" element={<Pagelayout><AboutUs /></Pagelayout>} />
           <Route path="/test" element={<Pagelayout><Test /></Pagelayout>} />
