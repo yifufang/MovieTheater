@@ -3,12 +3,10 @@ import logo from "../../../Statics/logo.png";
 export default function NavBar() {
   return (
     <div className="container mx-auto flex flex-wrap p-1.5 flex-col md:flex-row items-center">
-      <div className="flex items-center flex-shrink-0 mr-6">
-        <img className="h-16 w-20" src={logo} alt="Logo" />
-      </div>
-      <div class="mr-3">
+      <a className="flex items-center flex-shrink-0" href="/">
+        <img className="h-16 w-20 mr-3" src={logo} alt="Logo" />
         <h1 className="text-3xl text-gray-900">TeamAlpha</h1>
-      </div>
+      </a>
       <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
         <a className="mr-5 hover:text-gray-900" href="/">
           Home
@@ -16,7 +14,7 @@ export default function NavBar() {
         <a className="mr-5 hover:text-gray-900" href="/membership">
           Membership
         </a>
-        <a className="mr-5 hover:text-gray-900" href="/browse-movie">Book Tickets</a>
+        <a className="mr-5 hover:text-gray-900" href="/browse-movies">Book Tickets</a>
         <a className="mr-5 hover:text-gray-900" href="/contact-us">Contact Us</a>
         <a className="mr-5 hover:text-gray-900" href="/about-us">About Us</a>
       </nav>

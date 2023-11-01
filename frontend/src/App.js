@@ -9,8 +9,9 @@ import Pagelayout from "./components/Pagelayout/Pagelayout";
 
 //import chidlren pages of /
 import Membership from "./pages/Membership";
-import BrowseMovies from "./pages/bookTickets/browseMovies";
-import BrowseMovie from "./pages/bookTickets/browseMovie"
+import BrowseMovies from "./pages/bookTickets/BrowseMovies";
+import BrowseMovie from "./pages/bookTickets/BrowseMovie";
+import BookTicket from "./pages/bookTickets/BrowseSchedule";
 import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
 import Home from "./pages/Home";
@@ -25,13 +26,14 @@ export default function App() {
         <Route>
           <Route path="/" element={<Pagelayout><Home /></Pagelayout>} />
           <Route path="/membership" element={<Pagelayout><Membership /></Pagelayout>} />
-          <Route path="/browse-movie" element={<Pagelayout><BrowseMovies /></Pagelayout>} />
+          <Route path="/browse-movies" element={<Pagelayout><BrowseMovies /></Pagelayout>} />
           <Route path="/contact-us" element={<Pagelayout><ContactUs /></Pagelayout>} />
           <Route path="/about-us" element={<Pagelayout><AboutUs /></Pagelayout>} />
           <Route path="/test" element={<Pagelayout><Test /></Pagelayout>} />
         </Route>
         <Route>
-          <Route path="/browse-movie/:title" element={<Pagelayout><BrowseMovie /></Pagelayout>} />
+          <Route path="/browse-movies/:title" element={<Pagelayout><BrowseMovie /></Pagelayout>} />
+          <Route path="/browse-movies/:title/showtime" element={<Pagelayout><BookTicket /></Pagelayout>} />
         </Route>
         <Route>
           <Route path="/auth/login" element={<Login />} />

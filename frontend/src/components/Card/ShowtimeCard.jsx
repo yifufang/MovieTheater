@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function MovieCard({
+export default function ShowtimeCard({
   title,
   source,
   duration,
@@ -10,12 +10,10 @@ export default function MovieCard({
   i,
 }) {
   // convert title separated by space to separated by underscore
-  let href_title = title.replace(/[^a-zA-Z0-9 ]/g, "").toLowerCase().replace(/ /g,"_")
-  let navigate = useNavigate(); 
-  const routeChange = () =>{ 
-    let path = "/browse-movies/"+ href_title + "/showtime"; 
-    navigate(path);
-  }
+  let href_title = title
+    .replace(/[^a-zA-Z ]/g, "")
+    .toLowerCase()
+    .replace(/ /g, "_");
 
   return (
     <div className="rounded overflow-hidden shadow-lg p-5" key={i}>
@@ -31,7 +29,9 @@ export default function MovieCard({
         {duration} | {rating}
       </p>
       <p className="text-gray-600 font-bold text-sm">Released {release_year}</p>
-      <button onClick={routeChange} className="bg-red-500 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-3xl">
+      <button
+        className="bg-red-500 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-3xl"
+      >
         Get Tickets
       </button>
     </div>

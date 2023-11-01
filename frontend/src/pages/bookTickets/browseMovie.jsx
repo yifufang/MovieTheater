@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 // for now we import sample data, later we will make api call
 import img1 from "../../Statics/movieImages/five_nights_at_freddys.jpg";
 import img2 from "../../Statics/movieImages/killers_of_the_flower_moon.jpg";
@@ -31,52 +31,82 @@ export default function BrowseMovie() {
   let rating = null;
   let release_year = null;
   let description = null;
-  let image = null;
+  let image = findCurrentMovieImage(title);
+  let sTitle = convertToSpace(title);
+  findCurrentMovieInfo(title);
 
-  [...images.keys()].forEach((key) => {
-    if (title === key) {
-      image = images.get(key);
-    }
-  });
+  //navigation
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = "/browse-movies/" + title + "/showtime";
+    navigate(path);
+  };
 
-  for (let i = 0; i < sampleMovies.length; i++) {
-    console.log("title: ", title);
-    let s_title = sampleMovies[i].title
-      .replace(/[^a-zA-Z ]/g, "")
+  //convert title to text separated with underscore
+  function convertToUnderscore(title) {
+    return (title = title
+      .replace(/[^a-zA-Z0-9 ]/g, "")
       .toLowerCase()
-      .replace(/ /g, "_");
-    console.log("s_title: ", s_title);
-    if (title === s_title) {
-      duration = sampleMovies[i].duration;
-      rating = sampleMovies[i].rating;
-      release_year = sampleMovies[i].release_year;
-      description = sampleMovies[i].description;
-    }
+      .replace(/ /g, "_"));
   }
 
-  //   convert title to correct text form
-  let cTitle = title.split("_");
-  for (let i = 0; i < cTitle.length; i++) {
-    cTitle[i] = cTitle[i].charAt(0).toUpperCase() + cTitle[i].slice(1);
+  //convert title to text separated with space
+  function convertToSpace(title) {
+    let preps = ["of", "on", "and", "or", "in", "a", "at"];
+    title = title.split("_");
+    for (let i = 0; i < title.length; i++) {
+      if (preps.indexOf(title[i]) === -1) {
+        title[i] = title[i].charAt(0).toUpperCase() + title[i].slice(1);
+      }
+    }
+    title = title.join(" ");
+    return title;
   }
-  cTitle = cTitle.join(" ");
+
+  function findCurrentMovieImage() {
+    let image;
+    [...images.keys()].forEach((key) => {
+      if (title === key) {
+        image = images.get(key);
+      }
+    });
+    return image;
+  }
+
+  function findCurrentMovieInfo(title) {
+    for (let i = 0; i < sampleMovies.length; i++) {
+      let uTitle = convertToUnderscore(sampleMovies[i].title);
+      if (title === uTitle) {
+        duration = sampleMovies[i].duration;
+        rating = sampleMovies[i].rating;
+        release_year = sampleMovies[i].release_year;
+        description = sampleMovies[i].description;
+        break;
+      }
+    }
+  }
 
   return (
     <div className="">
-      <div className="flex justify-center w-full h-auto bg-gray-500">
-        <img className="object-cover" src={image} alt="movie"></img>
+      <div className="flex m-auto justify-center w-full h-auto bg-gray-500">
+        <div className="w-1/2">
+          <img className="object-contain justify-center mx-auto" src={image} alt="movie"></img>
+        </div>
         <div className="w-1/2 p-5">
-          <h1 className="text-black text-5xl">{cTitle}</h1>
-          <p className="w-1/2">{description}</p>
-          <div className="flex">
+          <h1 className="text-black text-5xl">{sTitle}</h1>
+          <p className="w-1/2 mt-5">{description}</p>
+          <div className="flex mt-5">
             <p className="text-black font-bold text-sm">
-              {duration} | {rating}
+              {duration} | {rating}, 
             </p>
             <p className="text-black font-bold text-sm">
               Released {release_year}
             </p>
           </div>
-          <button className="bg-red-500 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-3xl">
+          <button
+            onClick={routeChange}
+            className="bg-red-500 hover:bg-red-800 text-white font-bold mt-5 py-2 px-4 rounded-3xl"
+          >
             Get Tickets
           </button>
         </div>
