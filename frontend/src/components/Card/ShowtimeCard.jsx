@@ -7,33 +7,31 @@ export default function ShowtimeCard({
   duration,
   rating,
   release_year,
+  showtime,
   i,
 }) {
-  // convert title separated by space to separated by underscore
-  let href_title = title
-    .replace(/[^a-zA-Z ]/g, "")
-    .toLowerCase()
-    .replace(/ /g, "_");
-
+  console.log(showtime);
   return (
-    <div className="rounded overflow-hidden shadow-lg p-5" key={i}>
-      <a className="" href={"/browse-movies/" + href_title}>
-        <img
-          className="object-contain h-80 w-80 hover:scale-105"
-          src={source}
-          alt={title}
-        ></img>
-        <h1 className="mt-3 text-lg font-bold">{title}</h1>
-      </a>
-      <p className="text-gray-600 font-bold text-sm">
-        {duration} | {rating}
-      </p>
-      <p className="text-gray-600 font-bold text-sm">Released {release_year}</p>
-      <button
-        className="bg-red-500 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-3xl"
-      >
-        Get Tickets
-      </button>
+    <div className="w-2/3 m-auto justify-center rounded overflow-hidden shadow-lg p-5" key={i}>
+      <div className="flex w-full m-5 justify-center">
+        <img src={source} className="h-20 w-20 rounded-full" alt="movie"></img>
+        <div>
+          <h1 className="text-4xl font-bold px-5">{title}</h1>
+          <p className="text-gray-600 font-bold text-sm px-5">
+            {duration} | {rating}
+          </p>
+        </div>
+      </div>
+      <div className="flex w-full m-5 justify-center space-x-5">
+        {showtime.map((time, i) => (
+          <button
+            className="text-black font-bold py-2 px-4 rounded-3xl border border-black hover:text-red-500 hover:border-red-500"
+            key={i}
+          >
+            {time}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

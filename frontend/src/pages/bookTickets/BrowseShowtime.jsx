@@ -49,12 +49,11 @@ const movies = [
 ];
 
 export default function BrowseSchedule() {
+  console.log(sampleMovies[0].showtime)
   let { title } = useParams();
-  console.log(title)
   let duration = null;
   let image = findCurrentMovieImage(title);
   let sTitle = convertToSpace(title);
-  console.log(sTitle);
   findCurrentMovieInfo(title);
   const [selectLocation, SetSelectLocation] = useState();
   const [selectDate, SetSelectDate] = useState();
@@ -84,8 +83,6 @@ export default function BrowseSchedule() {
   function findCurrentMovieImage() {
     let image;
     [...images.keys()].forEach((key) => {
-      console.log("key:", key)
-      console.log("title:", title)
       if (title === key) {
         image = images.get(key);
       }
@@ -115,45 +112,45 @@ export default function BrowseSchedule() {
           className="border-solid border-2 border-black"
           value={selectLocation}
           onChange={(e) => SetSelectLocation(e.target.value)}
+          key={1}
         >
-          {theaterLocations.map((location) => (
-            <option>{location}</option>
+          {theaterLocations.map((location, i) => (
+            <option key={i}>{location}</option>
           ))}
         </select>
         <select
           className="border-solid border-2 border-black"
           value={selectDate}
           onChange={(e) => SetSelectDate(e.target.value)}
+          key={2}
         >
-          {movieDate.map((date) => (
-            <option>{date}</option>
+          {movieDate.map((date, i) => (
+            <option key={i}>{date}</option>
           ))}
         </select>
         <select
           className="border-solid border-2 border-black"
           value={selectMovie}
           onChange={(e) => SetSelectMovie(e.target.value)}
+          key={3}
         >
-          {movies.map((movie) => (
-            <option>{movie}</option>
+          {movies.map((movie, i) => (
+            <option key={i}>{movie}</option>
           ))}
         </select>
       </div>
-      {/* <div className="w-full m-5 justify-center flex">
-        <img src={image} className="h-20 w-20 rounded-full" alt="movie"></img>
-        <h1 className="text-4xl font-bold p-5">{sTitle}</h1>
-      </div> */}
       <div>
-      {/* {sampleMovies.map((movie, i) => (
+      {sampleMovies.map((movie, i) => (
         <ShowtimeCard
           title={movie.title}
-          source={images[i]}
+          source={images.get(convertToUnderscore(movie.title))}
           duration={movie.duration}
           rating={movie.rating}
           release_year={movie.release_year}
+          showtime={movie.showtime}
           key={i}
         ></ShowtimeCard>
-      ))} */}
+      ))}
       </div>
     </div>
   );

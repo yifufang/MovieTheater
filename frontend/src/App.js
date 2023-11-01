@@ -11,7 +11,7 @@ import Pagelayout from "./components/Pagelayout/Pagelayout";
 import Membership from "./pages/Membership";
 import BrowseMovies from "./pages/bookTickets/BrowseMovies";
 import BrowseMovie from "./pages/bookTickets/BrowseMovie";
-import BookTicket from "./pages/bookTickets/BrowseSchedule";
+import BookTicket from "./pages/bookTickets/BrowseShowtime";
 import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
 import Home from "./pages/Home";
