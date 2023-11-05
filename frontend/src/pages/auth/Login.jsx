@@ -43,7 +43,7 @@ export const Login = (props) => {
           </button>
         </form>
         <a className="link-button" href="/auth/Register">
-          Already have an account? Login here
+          Don't have an account? Register here
         </a>
       </div>
     </div>
