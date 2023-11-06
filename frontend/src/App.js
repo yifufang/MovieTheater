@@ -5,10 +5,11 @@ import { Login } from "./pages/auth/Login"
 import { Register } from "./pages/auth/Register"
 
 //pagelayout component contains the header and footer that apears on all pages of under / and its children
-import Pagelayout from "./components/Pagelayout/Pagelayout";
+import PageLayout from "./components/PageLayout/PageLayout";
 
 //import chidlren pages of /
 import Membership from "./pages/Membership";
+import BookTickets from "./pages/BookTickets";
 import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
 import Home from "./pages/Home";
@@ -21,11 +22,12 @@ export default function App() {
     <div className="overflow-hidden">
       <Routes>
         <Route>
-          <Route path="/" element={<Pagelayout><Home /></Pagelayout>} />
-          <Route path="/membership" element={<Pagelayout><Membership /></Pagelayout>} />
-          <Route path="/contact-us" element={<Pagelayout><ContactUs /></Pagelayout>} />
-          <Route path="/about-us" element={<Pagelayout><AboutUs /></Pagelayout>} />
-          <Route path="/test" element={<Pagelayout><Test /></Pagelayout>} />
+          <Route path="/" element={<PageLayout><Home /></PageLayout>} />
+          <Route path="/membership" element={<PageLayout><Membership /></PageLayout>} />
+          <Route path="/book-tickets" element={<PageLayout><BookTickets /></PageLayout>} />
+          <Route path="/contact-us" element={<PageLayout><ContactUs /></PageLayout>} />
+          <Route path="/about-us" element={<PageLayout><AboutUs /></PageLayout>} />
+          <Route path="/test" element={<PageLayout><Test /></PageLayout>} />
         </Route>
         <Route>
           <Route path="/auth/login" element={<Login />} />
