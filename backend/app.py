@@ -1,33 +1,93 @@
-# from app.routes import app
-from flask_jwt_extended import JWTManager
-import os
-from flask import Flask
-
-app = Flask(__name__)
-if __name__ == '__main__':
-    app.run(debug=True)
-
-# Setup the Flask-JWT-Extended extension
-app.config["JWT_SECRET_KEY"] = os.environ.get('JWT_ACCESS_SECRET_TOKEN')  # Change this!
-jwt = JWTManager(app)
-
-
-'''from app.routes import app
-
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_jwt_extended import JWTManager
-
-# app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://username:password@localhost/db_name'
-
-# Configure Flask-JWT-Extended
-app.config['JWT_SECRET_KEY'] = 'your_secret_key'  # Change this to a secure secret key
-app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=1)
-
-db = SQLAlchemy(app)
-jwt = JWTManager(app)
-
-if __name__ == '__main__':
-    app.run(debug=True)
 '''
+On Mac, need to go to /teamproject-team-alpha-1/backend/, 
+create a virtual env (python3.9 -m venv myenv) then activate
+the virtual environment (. myenv/bin/activate).
+'''
+# It's fine to include session bc we are including flask_session which is
+# server-sided session which is more secure than client-sided
+from flask import Flask, render_template, request, jsonify, session
+from flask_bcrypt import Bcrypt
+from flask_login import UserMixin
+from flask_session import Session
+from flask_sqlalchemy import SQLAlchemy
+from config import ApplicationConfig
+from uuid import uuid4
+from datetime import datetime
+
+db = SQLAlchemy()
+app = Flask(__name__)
+app.config.from_object(ApplicationConfig)
+db.init_app(app)
+server_session = Session(app)
+
+def get_uuid():
+    return uuid4().hex
+
+class User(db.Model, UserMixin):
+    id = db.Column(db.String[40], primary_key=True, unique=True, default=get_uuid)
+    email = db.Column(db.String[40], nullable=False, unique=True)
+    password = db.Column(db.String[80], nullable=False)
+    # dateCreated = db.Column(db.Date, default=datetime.utcnow)
+
+with app.app_context():
+    db.create_all()
+
+bcrypt = Bcrypt(app)
+
+@app.route("/@me")
+def get_current_user():
+    user_id = session.get("user_id")
+    if not user_id:
+        return jsonify({"error" : "Not a valid user"}), 401
+    
+    user = User.query.filter_by(id=user_id).first()
+    return jsonify({
+        "id": user.id,
+        "email": user.email
+    })
+
+@app.route("/register", methods=['GET', 'POST'])
+def register():
+    email = request.json["email"]
+    password = request.json["password"]
+
+    user = User.query.filter_by(email=email).first()
+    if user is not None:
+        return jsonify({"error" : "User already exists"}), 409
+
+    hashed_password = bcrypt.generate_password_hash(password)
+    user = User(email=email, password=hashed_password)
+    db.session.add(user)
+    db.session.commit()
+
+    return jsonify({
+        "id": user.id,
+        "email": user.email
+    })
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    email = request.json["email"]
+    password = request.json["password"]
+
+    user = User.query.filter_by(email=email).first()
+    if user is None:
+        return jsonify({"error" : "Account not found"}), 401
+    if not bcrypt.check_password_hash(user.password, password):
+        return jsonify({"error" : "Incorrect email or password"}), 401
+
+    session["user_id"] = user.id
+
+    return jsonify({
+        "id": user.id,
+        "email": user.email
+    })
+
+# @app.route('/test')
+# def test():
+#     output = 'testing'
+#     return Response(json.dumps(output), status=200)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
