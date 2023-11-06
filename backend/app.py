@@ -11,7 +11,6 @@ from flask_login import UserMixin
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from config import ApplicationConfig
-from uuid import uuid4
 from datetime import datetime
 
 db = SQLAlchemy()
@@ -20,14 +19,11 @@ app.config.from_object(ApplicationConfig)
 db.init_app(app)
 server_session = Session(app)
 
-def get_uuid():
-    return uuid4().hex
-
 class User(db.Model, UserMixin):
-    id = db.Column(db.String[40], primary_key=True, unique=True, default=get_uuid)
+    id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
     email = db.Column(db.String[40], nullable=False, unique=True)
     password = db.Column(db.String[80], nullable=False)
-    # dateCreated = db.Column(db.Date, default=datetime.utcnow)
+    dateCreated = db.Column(db.Date, default=datetime.utcnow)
 
 with app.app_context():
     db.create_all()

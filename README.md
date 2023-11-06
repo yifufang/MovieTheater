@@ -90,14 +90,30 @@ frontend/
 ├── src/
 │   ├── index.js
 │   ├── App.js
-│   ├── components/
-│   │   ├── Header.js
-│   ├── pages/
-│   │   ├── Home.js
-│   │   ├── Auth/
-│   │   │   ├──log-in.js
-│   │   │   ├──sign-up.js
 │   ├── app.css
+│   ├── components/
+│   │   ├── Carousel/
+│   │   │   ├── CarouselDefault.jsx
+│   │   ├── Statistics/
+│   │   │   ├── Statistics.jsx
+│   │   ├── PageLayout/
+│   │   │   ├── Footer.jsx
+│   │   │   ├── PageLayout.jsx
+│   │   │   ├── Header/
+│   │   │   │   ├── Header.jsx
+│   │   │   │   ├── Navbar.jsx
+│   ├── pages/
+│   │   ├── AboutUs.jsx
+│   │   ├── BookTickets.jsx
+│   │   ├── ContactUs.jsx
+│   │   ├── Home.jsx
+│   │   ├── Membership.jsx
+│   │   ├── NotFound.jsx
+│   │   ├── Test.jsx
+│   │   ├── Auth/
+│   │   │   ├──auth.css
+│   │   │   ├──login.jsx
+│   │   │   ├──register.jsx
 ├── package.json
 ├── package-lock.json
 ├── tailwind.config.js
