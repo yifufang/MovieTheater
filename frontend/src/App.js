@@ -14,6 +14,7 @@ import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
 import Home from "./pages/Home";
 import Test from "./pages/Test";
+import NotFound from "./pages/NotFound";
 
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="/contact-us" element={<PageLayout><ContactUs /></PageLayout>} />
           <Route path="/about-us" element={<PageLayout><AboutUs /></PageLayout>} />
           <Route path="/test" element={<PageLayout><Test /></PageLayout>} />
+          <Route path="*" element={<PageLayout><NotFound /></PageLayout>} />
         </Route>
         <Route>
           <Route path="/auth/login" element={<Login />} />
