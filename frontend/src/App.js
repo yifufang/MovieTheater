@@ -16,9 +16,7 @@ import Home from "./pages/Home";
 import Test from "./pages/Test";
 import NotFound from "./pages/NotFound";
 
-
 export default function App() {
-
   return (
     <div className="overflow-hidden">
       <Routes>
@@ -32,8 +30,8 @@ export default function App() {
           <Route path="*" element={<PageLayout><NotFound /></PageLayout>} />
         </Route>
         <Route>
-          <Route path="/auth/login" element={<Login />} />
-          <Route path="/auth/Register" element={<Register />} />
+          <Route path="/auth/login" element={<PageLayout><Login /></PageLayout>} />
+          <Route path="/auth/Register" element={<PageLayout><Register /></PageLayout>} />
         </Route>
       </Routes>
     </div>
