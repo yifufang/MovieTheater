@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import httpClient from "../../httpClient";
 import "./auth.css";
 
 export const Register = (props) => {
@@ -6,13 +7,28 @@ export const Register = (props) => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (evnt) => {
+    evnt.preventDefault();
     console.log(email);
   };
 
+  const registerUser = async (evnt) => {
+    console.log(email, password);
+    try {
+      const resp = await httpClient.post("//localhost:5000/register", {
+        email,
+        password,
+      });
+      window.location.href = "/";
+    }
+    catch (error) {
+      if (error.response.status === 401) {
+        alert("Something went wrong, please go back to the home page and try again.");
+      }
+    }
+  };
+
   return (
-    // <>Register</>
     <div className="auth">
       <h1 className="text-white font-extrabold mb-4 text-3xl md:text-4xl lg:text-5xl">REGISTER</h1>
       <div className="auth-form-container">
@@ -47,6 +63,7 @@ export const Register = (props) => {
           <button
             type="submit"
             className="mt-1 py-1.5 px-4 transition-colors bg-blue-600 border active:bg-blue-800 font-medium border-black border-opacity-20 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+            onClick={() => registerUser()}
           >
             Register
           </button>
