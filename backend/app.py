@@ -5,17 +5,20 @@ the virtual environment (. myenv/bin/activate).
 '''
 # It's fine to include session bc we are including flask_session which is
 # server-sided session which is more secure than client-sided
+# Another note, must be using "pip install Werkzeug==2.3.7" otherwise error
 from flask import Flask, render_template, request, jsonify, session
 from flask_bcrypt import Bcrypt
 from flask_login import UserMixin
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 from config import ApplicationConfig
 from datetime import datetime
 
 db = SQLAlchemy()
 app = Flask(__name__)
 app.config.from_object(ApplicationConfig)
+cors = CORS(app, supports_credentials=True)
 db.init_app(app)
 server_session = Session(app)
 
@@ -55,6 +58,8 @@ def register():
     user = User(email=email, password=hashed_password)
     db.session.add(user)
     db.session.commit()
+    
+    session["user_id"] = user.id
 
     return jsonify({
         "id": user.id,
@@ -79,11 +84,15 @@ def login():
         "email": user.email
     })
 
+@app.route("/logout", methods=["POST"])
+def logout_user():
+    session.pop("user_id")
+    return "200"
+
 # @app.route('/test')
 # def test():
 #     output = 'testing'
 #     return Response(json.dumps(output), status=200)
-
 
 if __name__ == '__main__':
     app.run(debug=True)
