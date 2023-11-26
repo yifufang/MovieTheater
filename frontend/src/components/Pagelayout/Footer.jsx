@@ -10,21 +10,19 @@ export default function Footer() {
             </h2>
             <nav className="list-none">
               <li>
-                <a className="text-gray-600 hover:text-gray-800" href="/">
-                  Home
-                </a>
+                <a class="text-gray-600 hover:text-gray-800" href="/">Home</a>
               </li>
               <li>
-                <a className="text-gray-600 hover:text-gray-800">Membership</a>
+                <a class="text-gray-600 hover:text-gray-800" href="/membership">Membership</a>
               </li>
               <li>
-                <a className="text-gray-600 hover:text-gray-800">Book Tickets</a>
+                <a class="text-gray-600 hover:text-gray-800" href="/book-tickets">Book Tickets</a>
               </li>
               <li>
-                <a className="text-gray-600 hover:text-gray-800">Contact Us</a>
+                <a class="text-gray-600 hover:text-gray-800" href="/contact-us">Contact Us</a>
               </li>
               <li>
-                <a className="text-gray-600 hover:text-gray-800">About Us</a>
+                <a class="text-gray-600 hover:text-gray-800" href="/about-us">About Us</a>
               </li>
             </nav>
           </div>

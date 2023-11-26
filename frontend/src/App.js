@@ -5,7 +5,7 @@ import { Login } from "./pages/auth/Login"
 import { Register } from "./pages/auth/Register"
 
 //pagelayout component contains the header and footer that apears on all pages of under / and its children
-import Pagelayout from "./components/Pagelayout/Pagelayout";
+import PageLayout from "./components/Pagelayout/PageLayout";
 
 //import chidlren pages of /
 import Membership from "./pages/Membership";
@@ -17,9 +17,11 @@ import AboutUs from "./pages/AboutUs";
 import Home from "./pages/Home";
 import Test from "./pages/Test";
 
+//importing dynamic pages
+import MovieDetails from "./pages/dynamicPages/MovieDetails";
+import NotFound from "./pages/NotFound";
 
 export default function App() {
-
   return (
     <div className="overflow-hidden">
       <Routes>

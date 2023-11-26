@@ -56,6 +56,8 @@ export default function CarouselDefault() {
           </svg>
         </IconButton>
       )}
+      autoplay={true}
+      
     >
       <div className="relative h-full w-full">
         <img
@@ -83,7 +85,6 @@ export default function CarouselDefault() {
               the allure of exclusive promotions, all within the mesmerizing
               tapestry of the silver screen's enchantment."
               <br />
-              ---Chatgpt---
             </Typography>
             <div className="flex justify-center gap-2">
               <Button size="lg" color="white">
@@ -100,7 +101,34 @@ export default function CarouselDefault() {
           alt="image 2"
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 grid h-full w-full place-items-center bg-black/75"></div>
+        <div className="absolute inset-0 grid h-full w-full place-items-center bg-black/75">
+        <div className="w-3/4 text-center md:w-2/4">
+            <Typography
+              variant="h1"
+              color="white"
+              className="mb-4 text-3xl md:text-4xl lg:text-5xl"
+            >
+              XXX Movie Theater
+            </Typography>
+            <Typography
+              variant="lead"
+              color="white"
+              className="mb-12 opacity-80"
+            >
+              "Step into the enchanting realm of cinematic wonders! Embark on a
+              journey through our movie theater homepage, where you shall unveil
+              the latest blockbuster spectacles, the mystique of showtimes, and
+              the allure of exclusive promotions, all within the mesmerizing
+              tapestry of the silver screen's enchantment."
+              <br />
+            </Typography>
+            <div className="flex justify-center gap-2">
+              <Button size="lg" color="white">
+                Book Ticket Now
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="relative h-full w-full">
@@ -109,7 +137,34 @@ export default function CarouselDefault() {
           alt="image 3"
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 grid h-full w-full place-items-center bg-black/75"></div>
+        <div className="absolute inset-0 grid h-full w-full place-items-center bg-black/75">
+        <div className="w-3/4 text-center md:w-2/4">
+            <Typography
+              variant="h1"
+              color="white"
+              className="mb-4 text-3xl md:text-4xl lg:text-5xl"
+            >
+              XXX Movie Theater
+            </Typography>
+            <Typography
+              variant="lead"
+              color="white"
+              className="mb-12 opacity-80"
+            >
+              "Step into the enchanting realm of cinematic wonders! Embark on a
+              journey through our movie theater homepage, where you shall unveil
+              the latest blockbuster spectacles, the mystique of showtimes, and
+              the allure of exclusive promotions, all within the mesmerizing
+              tapestry of the silver screen's enchantment."
+              <br />
+            </Typography>
+            <div className="flex justify-center gap-2">
+              <Button size="lg" color="white">
+                Book Ticket Now
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
     </Carousel>
   );
