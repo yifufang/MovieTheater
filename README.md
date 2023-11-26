@@ -1,5 +1,5 @@
 CMPE-202-1 Class Project - Movie Theater end-to-end
-Due: 12/1/23 
+Due: 12/1/23
 """
 Team Alpha's project repo for implementing an end2end MovieTheater Club application for your favorite movie theater chain.
 The system can manage multiplexes in many locations i.e. each location has multiple screens.
@@ -52,13 +52,13 @@ python -m venv myenv
 - make sure the path is '<your path>\teamproject-team-alpha-1\Backend', activate your venv first with this command:
 
 ```
-venv\Scripts\activate
+.\myenv\Scripts\activate
 ```
 
 - then run:
 
 ```
- pip install -r requirements.txt
+ pip install -r .\requirements.txt
 ```
 
 - Now you can start your backend locally with:
@@ -90,14 +90,30 @@ frontend/
 ├── src/
 │   ├── index.js
 │   ├── App.js
-│   ├── components/
-│   │   ├── Header.js
-│   ├── pages/
-│   │   ├── Home.js
-│   │   ├── Auth/
-│   │   │   ├──log-in.js
-│   │   │   ├──sign-up.js
 │   ├── app.css
+│   ├── components/
+│   │   ├── Carousel/
+│   │   │   ├── CarouselDefault.jsx
+│   │   ├── Statistics/
+│   │   │   ├── Statistics.jsx
+│   │   ├── PageLayout/
+│   │   │   ├── Footer.jsx
+│   │   │   ├── PageLayout.jsx
+│   │   │   ├── Header/
+│   │   │   │   ├── Header.jsx
+│   │   │   │   ├── Navbar.jsx
+│   ├── pages/
+│   │   ├── AboutUs.jsx
+│   │   ├── BookTickets.jsx
+│   │   ├── ContactUs.jsx
+│   │   ├── Home.jsx
+│   │   ├── Membership.jsx
+│   │   ├── NotFound.jsx
+│   │   ├── Test.jsx
+│   │   ├── Auth/
+│   │   │   ├──auth.css
+│   │   │   ├──login.jsx
+│   │   │   ├──register.jsx
 ├── package.json
 ├── package-lock.json
 ├── tailwind.config.js
