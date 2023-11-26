@@ -14,6 +14,8 @@ import AboutUs from "./pages/AboutUs";
 import Home from "./pages/Home";
 import Test from "./pages/Test";
 
+//importing dynamic pages
+import MovieDetails from "./pages/dynamicPages/MovieDetails";
 
 export default function App() {
 
@@ -30,6 +32,9 @@ export default function App() {
         <Route>
           <Route path="/auth/login" element={<Login />} />
           <Route path="/auth/Register" element={<Register />} />
+        </Route>
+        <Route>
+          <Route path="/movie/:movieHref" element={<Pagelayout><MovieDetails /></Pagelayout>} />
         </Route>
       </Routes>
     </div>
