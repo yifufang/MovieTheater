@@ -43,10 +43,11 @@ export default function NavBar() {
         </a>
       </nav>
       {localStorage.getItem("token") !== null ? (
-        <div>
-          <h2>Logged in</h2>
-          <h3>Name: {JSON.parse(localStorage.getItem("user_info")).first_name + " " + JSON.parse(localStorage.getItem("user_info")).last_name}</h3>
-          <h3>Email: {JSON.parse(localStorage.getItem("user_info")).email}</h3>
+        
+        <div className="flex items-center">
+          <a className="mr-5 hover:text-gray-900" href="/dashboard">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFD-nZD4QejM8cDLL4zGxF_jJlF_659ijtYqqlLxs&s" className="w-8 h-8 rounded-md"/>
+        </a>
           <a
             href="/"
             onClick={logoutUser}

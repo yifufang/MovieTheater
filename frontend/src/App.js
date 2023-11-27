@@ -14,12 +14,12 @@ import BrowseMovie from "./pages/bookTickets/BrowseMovie";
 import BookTicket from "./pages/bookTickets/BrowseShowtime";
 import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
+import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Test from "./pages/Test";
 
 //importing dynamic pages
 import MovieDetails from "./pages/dynamicPages/MovieDetails";
-import NotFound from "./pages/NotFound";
 
 export default function App() {
   return (
@@ -31,6 +31,7 @@ export default function App() {
           <Route path="/book-tickets" element={<PageLayout><BrowseMovies /></PageLayout>} />
           <Route path="/contact-us" element={<PageLayout><ContactUs /></PageLayout>} />
           <Route path="/about-us" element={<PageLayout><AboutUs /></PageLayout>} />
+          <Route path="/dashboard" element={<PageLayout><Dashboard /></PageLayout>} />
           <Route path="/test" element={<PageLayout><Test /></PageLayout>} />
         </Route>
         <Route>

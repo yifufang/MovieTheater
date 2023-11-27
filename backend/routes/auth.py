@@ -42,7 +42,7 @@ def login():
         cur.execute("SELECT * FROM users WHERE email = %s AND password = %s", (email, password))
         user = cur.fetchone()
         cur.close()
-
+        
         # check user in table exist or not, the data fetched from database
         if user:
             user_id = user[0]
@@ -85,8 +85,8 @@ def signup():
         else:
             # create a new user row to table
             cur = app.mysql.connection.cursor()
-            cur.execute("INSERT INTO users (email, password, first_name, last_name) VALUES (%s, %s, %s, %s)",
-                        (email, password, first_name, last_name))
+            cur.execute("INSERT INTO users (email, password, first_name, last_name, membership, reward_point) VALUES (%s, %s, %s, %s, %s, %s)",
+                        (email, password, first_name, last_name, 'R', 0))
             app.mysql.connection.commit()
             cur.close()
             return Response(json.dumps({'error': False, 'message': 'User registration successfully'}), status=200)

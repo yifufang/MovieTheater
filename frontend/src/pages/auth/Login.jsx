@@ -16,7 +16,7 @@ export const Login = () => {
         if (!data.error) {
           localStorage.setItem("user_info", JSON.stringify(data.data));
           localStorage.setItem("token", JSON.stringify(data.token));
-          window.location.href = "/";
+          window.location.href = "/dashboard";
         } else {
           alert(data.message);
         }
