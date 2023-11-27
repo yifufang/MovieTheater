@@ -23,13 +23,13 @@ DROP TABLE IF EXISTS `film_schedules`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `film_schedules` (
-  `schedule_id` int NOT NULL,
+  `schedule_id` int NOT NULL AUTO_INCREMENT,
   `theater_id` int NOT NULL,
   `film_id` int NOT NULL,
   `start_time` datetime NOT NULL,
   PRIMARY KEY (`schedule_id`),
   UNIQUE KEY `schedule_id_UNIQUE` (`schedule_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -165,16 +165,16 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
-  `user_id` int NOT NULL,
+  `user_id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `first_name` varchar(45) NOT NULL,
   `last_name` varchar(45) NOT NULL,
   `membership` char(1) NOT NULL DEFAULT 'R',
   `reward_point` int NOT NULL DEFAULT '0',
-  PRIMARY KEY (`email`,`user_id`),
+  PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id_UNIQUE` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -183,7 +183,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'jai@jai','1234','Jiajun','Dai','R',0),(2,'jena@jena','1234','Jena','Kelbessa','R',0),(3,'tony@tony','1234','Anthony','Zunino','R',0),(4,'yifu@yifu','1234','Yifu','Fang','R',0);
+INSERT INTO `users` VALUES (1,'jai@jai','1234','Jiajun','Dai','R',0),(2,'jena@jena','1234','Jena','Kelbessa','R',0),(3,'tony@tony','1234','Anthony','Zunino','R',0),(4,'yifu@yifu','1234','Yifu','Fang','R',0),(5,'admin@admin','1234','admin','employee','E',0),(6,'premium@premium','1234','premium','premium','P',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -196,4 +196,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-26 22:58:16
+-- Dump completed on 2023-11-27 11:32:13
