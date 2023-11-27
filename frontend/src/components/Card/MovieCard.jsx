@@ -13,7 +13,7 @@ export default function MovieCard({
   let href_title = title.replace(/[^a-zA-Z0-9 ]/g, "").toLowerCase().replace(/ /g,"_")
   let navigate = useNavigate(); 
   const routeChange = () =>{ 
-    let path = "/browse-movies/"+ href_title + "/showtime"; 
+    let path = "/book-tickets/"+ href_title + "/showtime"; 
     navigate(path);
   }
 
