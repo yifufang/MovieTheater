@@ -1,37 +1,35 @@
 import React, { useState } from "react";
-import httpClient from "../../httpClient";
 import "./auth.css";
 
-export const Login = (props) => {
+export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleSubmit = (evnt) => {
-    evnt.preventDefault();
-    console.log(email);
-  };
-
-  const logInUser = async (evnt) => {
-    console.log(email, password);
-    try {
-      const resp = await httpClient.post("//localhost:5000/login", {
-        email,
-        password,
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch("http://localhost:5000/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: email, password: password }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (!data.error) {
+          localStorage.setItem("user_info", JSON.stringify(data.data));
+          localStorage.setItem("token", JSON.stringify(data.token));
+          window.location.href = "/";
+        } else {
+          alert(data.message);
+        }
       });
-      window.location.href = "/";
-    }
-    catch (error) {
-      if (error.response.status === 401) {
-        alert("Invalid login information, either your email or password is incorrect");
-      }
-    }
   };
 
   return (
     <div className="auth">
-      <h1 className="text-white font-extrabold mb-4 text-3xl md:text-4xl lg:text-5xl">LOG IN</h1>
+      <h1 className="text-white font-extrabold mb-4 text-3xl md:text-4xl lg:text-5xl">
+        LOG IN
+      </h1>
       <div className="auth-form-container">
-        <form className="login-form" onSubmit={handleSubmit}>
+        <form className="login-form">
           <label htmlFor="email">E-mail</label>
           <input
             value={email}
@@ -53,7 +51,7 @@ export const Login = (props) => {
           <button
             type="submit"
             className="mt-1 py-1.5 px-4 transition-colors bg-blue-600 border active:bg-blue-800 font-medium border-black border-opacity-20 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
-            onClick={() => logInUser()}
+            onClick={handleSubmit}
           >
             Log in
           </button>

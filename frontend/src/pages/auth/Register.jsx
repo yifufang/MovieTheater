@@ -1,42 +1,54 @@
 import React, { useState } from "react";
-import httpClient from "../../httpClient";
 import "./auth.css";
 
-export const Register = (props) => {
+export const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
-  const handleSubmit = (evnt) => {
-    evnt.preventDefault();
-    console.log(email);
-  };
-
-  const registerUser = async (evnt) => {
-    console.log(email, password);
-    try {
-      const resp = await httpClient.post("//localhost:5000/register", {
-        email,
-        password,
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch("http://localhost:5000/auth/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        password: password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (!data.error) {
+          window.location.href = "/";
+        } else {
+          alert(data.message);
+        }
       });
-      window.location.href = "/";
-    }
-    catch (error) {
-      if (error.response.status === 401) {
-        alert("Something went wrong, please go back to the home page and try again.");
-      }
-    }
   };
 
   return (
     <div className="auth">
-      <h1 className="text-white font-extrabold mb-4 text-3xl md:text-4xl lg:text-5xl">REGISTER</h1>
+      <h1 className="text-white font-extrabold mb-4 text-3xl md:text-4xl lg:text-5xl">
+        REGISTER
+      </h1>
       <div className="auth-form-container">
-        <form className="register-form" onSubmit={handleSubmit}>
-          <label htmlFor="name">Full Name</label>
+        <form className="register-form">
+          <label htmlFor="name">First Name</label>
           <input
-            value={name}
-            onChange={(evnt) => setName(evnt.target.value)}
+            value={firstName}
+            onChange={(evnt) => setFirstName(evnt.target.value)}
+            type="name"
+            placeholder="John Smith"
+            id="name"
+            name="name"
+          />
+          <label htmlFor="name">Last Name</label>
+          <input
+            value={lastName}
+            onChange={(evnt) => setLastName(evnt.target.value)}
             type="name"
             placeholder="John Smith"
             id="name"
@@ -63,7 +75,7 @@ export const Register = (props) => {
           <button
             type="submit"
             className="mt-1 py-1.5 px-4 transition-colors bg-blue-600 border active:bg-blue-800 font-medium border-black border-opacity-20 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
-            onClick={() => registerUser()}
+            onClick={handleSubmit}
           >
             Register
           </button>
