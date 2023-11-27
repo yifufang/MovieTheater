@@ -5,7 +5,7 @@ import { Login } from "./pages/auth/Login"
 import { Register } from "./pages/auth/Register"
 
 //pagelayout component contains the header and footer that apears on all pages of under / and its children
-import PageLayout from "./components/Pagelayout/Pagelayout";
+import PageLayout from "./components/Pagelayout/PageLayout";
 
 //import chidlren pages of /
 import Membership from "./pages/Membership";
