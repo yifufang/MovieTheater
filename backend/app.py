@@ -24,19 +24,13 @@ from flask import Flask, \
 from config import app
 from routes.auth import auth
 
+from models.employee import employee
+
 
 # for api testing, modify here and go to '<your URL>/test'
 @app.route('/test')
 def test():
-    movie_name = 'Napoleon'
-    theater_id = 1
-    # open database connection, and fetch data from database
-    cur = app.mysql.connection.cursor()
-    cur.execute("SELECT start_time FROM film_schedules INNER JOIN films ON film_schedules.film_id = films.film_id WHERE theater_id = %s AND title = %s", (theater_id, movie_name))
-    film = cur.fetchall()
-    cur.close()
-    print(film)
-    output = 'testing'
+    output ='test'
     return Response(json.dumps(output), status=200)
 
 
@@ -45,6 +39,7 @@ app.register_blueprint(auth)
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
 
 

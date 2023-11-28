@@ -41,6 +41,16 @@ backend/
 ├── app.py
 ```
 
+## Prepration for running on windows
+
+- Install Redis Server for windows
+- download mysql installer and install mysql server and workbench. https://dev.mysql.com/downloads/file/?id=519997
+  - you will be asked to configure root and password.
+  - you will need to modify the these 2 line at Backend/config.py
+  ```
+    self.config['MYSQL_USER'] = 'you_root'
+    self.config['MYSQL_PASSWORD'] = 'you_password'
+  ```
 ## How to run our Python Flask Back-end:
 
 - Make sure you installed your interpreter with a virtual environment '<your path>\teamproject-team-alpha-1\Backend' (venv)
@@ -134,6 +144,8 @@ npm install
 ```
 npm start
 ```
+
+
 
 ## Front-end routing
 

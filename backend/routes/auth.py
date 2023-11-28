@@ -42,7 +42,7 @@ def login():
         cur.execute("SELECT * FROM users WHERE email = %s AND password = %s", (email, password))
         user = cur.fetchone()
         cur.close()
-
+        
         # check user in table exist or not, the data fetched from database
         if user:
             user_id = user[0]
