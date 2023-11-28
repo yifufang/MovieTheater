@@ -18,3 +18,15 @@ class employee:
         self.last_name = employee[4]
         self.membership = employee[5]
 
+    
+    # TODO: implement these methods
+    def add_film_to_schedule(self, film_id, start_time):
+        pass
+    
+    # TODO: implement these methods
+    def remove_film_from_schedule(self, film_id, start_time):
+        pass
+
+    # TODO: implement these methods
+    def update_film_schedule(self, film_id, start_time):
+        pass

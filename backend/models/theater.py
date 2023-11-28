@@ -17,10 +17,11 @@ class theater:
         
         self.seats = []
 
+    ## TODO: implement these methods
+    def check_available_seat(self):
+        pass
 
-        def check_available_seat(self):
-            pass
-        
-        def seat_assignment(self):
-            pass
+    ## TODO: implement these methods
+    def seat_assignment(self):
+        pass
         
