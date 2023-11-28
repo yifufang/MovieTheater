@@ -23,8 +23,7 @@ from flask import Flask, \
     json
 from config import app
 from routes.auth import auth
-
-from models.employee import employee
+from routes.emp import emp
 
 
 # for api testing, modify here and go to '<your URL>/test'
@@ -36,6 +35,8 @@ def test():
 
 # authentication routes
 app.register_blueprint(auth)
+app.register_blueprint(emp)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

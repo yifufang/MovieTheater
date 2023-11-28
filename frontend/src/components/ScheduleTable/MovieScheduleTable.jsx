@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import MovieBox from "./movieBox";
+import MovieBox from "./MovieBox";
+import SlidingWindow from "./SlidingWindow";
 
 export default function MovieScheduleTable() {
   const [activeTab, setActiveTab] = useState("a");
@@ -11,7 +12,7 @@ export default function MovieScheduleTable() {
   }
   return (
     <div className="w-3/4 mx-auto mt-4">
-      <h1 className="text-2xl font-bold text-left">Movie Schedule</h1>
+      <h1 className="text-2xl font-bold text-left">Schedule Control Panel</h1>
       <div className="grid grid-cols-5 gap-5">
         <button
           className="focus:text-white p-4 rounded focus:bg-indigo-500 shadow-md flex items-center justify-center"
@@ -37,13 +38,9 @@ export default function MovieScheduleTable() {
         >
           Theater D
         </button>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full animate-pulse transform active:scale-75 transition-transform"
-          onClick={() => ScheduleMovie()}
-        >
-          Schedule
-        </button>
+        <SlidingWindow />
       </div>
+      
 
       <div className="flex flex-col flex-grow overflow-auto">
         {activeTab === "a" && (
