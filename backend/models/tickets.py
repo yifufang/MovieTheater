@@ -7,6 +7,7 @@ class ticket:
         cur.execute("SELECT * FROM tickets WHERE ticket_id = %s", (ticket_id,))
         Ticket = cur.fetchone()
         cur.close()
+        
         if Ticket is None:
             raise Exception("Ticket not found")
         
@@ -18,7 +19,7 @@ class ticket:
         self.user_id = Ticket[4]
         self.cancelled = Ticket[5]
         self.schedule_id = Ticket[6]
-        self.time_bought = ticket[7]
+        self.time_bought = Ticket[7]
 
         ##optional attribute
         self.discountable =False
