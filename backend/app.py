@@ -36,8 +36,13 @@ def test():
     # def Book_tickets(self, price, seat_ids, schedule_id):
     price = 10.00
     seat_ids = ['a3', 'a5']
+    # seat_ids = ['a2', 'a4', 'b21']
     schedule_id = "3"
-    print(myUser.Book_tickets(price, seat_ids, schedule_id))
+    # myUser.Book_tickets(price, seat_ids, schedule_id)
+    # myUser.Cancel_tickets(seat_ids)
+    # myUser.Buy_membership(True)
+    # print(myUser.Get_watch_history())
+    print(myUser.Get_membership(8))
     return Response(json.dumps(output), status=200)
 
 
