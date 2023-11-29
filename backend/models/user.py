@@ -1,5 +1,4 @@
 from config import app
-from datetime import date
 
 class user:
     def __init__(self, user_id):
