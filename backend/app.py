@@ -25,12 +25,19 @@ from config import app
 from routes.auth import auth
 
 from models.employee import employee
+from models.user import user
 
 
 # for api testing, modify here and go to '<your URL>/test'
 @app.route('/test')
 def test():
     output ='test'
+    myUser = user(app.redis.get('user_id'))
+    # def Book_tickets(self, price, seat_ids, schedule_id):
+    price = 10.00
+    seat_ids = ['a3', 'a5']
+    schedule_id = "3"
+    print(myUser.Book_tickets(price, seat_ids, schedule_id))
     return Response(json.dumps(output), status=200)
 
 

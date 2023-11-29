@@ -13,12 +13,6 @@ export default function NavBar() {
     window.location.href = "/";
   };
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("token") !== null) {
-  //     setHasToken(true);
-  //   }
-  // }, []);
-
   return (
     <div className="container mx-auto flex flex-wrap p-1.5 flex-col md:flex-row items-center">
       <a className="flex items-center flex-shrink-0" href="/">
