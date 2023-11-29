@@ -42,7 +42,7 @@ def test():
     # myUser.Cancel_tickets(seat_ids)
     # myUser.Buy_membership(True)
     # print(myUser.Get_watch_history())
-    print(myUser.Get_membership(8))
+    # print(myUser.Get_membership(8))
     return Response(json.dumps(output), status=200)
 
 
