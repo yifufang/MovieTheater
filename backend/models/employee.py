@@ -1,4 +1,5 @@
 from config import app
+from datetime import datetime
 
 class employee:
     def __init__(self, employee_id):
@@ -20,12 +21,33 @@ class employee:
 
     
     # TODO: implement these methods
-    def add_film_to_schedule(self, film_id, start_time):
-        pass
+    def add_film_to_schedule(self, theater_id, film_id, start_time):
+        if theater_id is None or film_id is None or start_time is None:
+            return False
+        try:
+            start_time = datetime.strptime(start_time, '%Y-%m-%d %H:%M:%S')
+            cur = app.mysql.connection.cursor()
+            cur.execute("INSERT INTO film_schedules (theater_id, film_id, start_time) VALUES (%s, %s, %s)", (theater_id, film_id, start_time))
+            app.mysql.connection.commit()
+            cur.close()
+            return True
+        except Exception as e:
+            print(e)
+            return False
     
     # TODO: implement these methods
-    def remove_film_from_schedule(self, film_id, start_time):
-        pass
+    def remove_film_from_schedule(self, schedule_id):
+        if schedule_id is None:
+            return False
+        try:
+            cur = app.mysql.connection.cursor()
+            cur.execute("DELETE FROM film_schedules WHERE schedule_id = %s", (schedule_id,))
+            app.mysql.connection.commit()
+            cur.close()
+            return True
+        except Exception as e:
+            print(e)
+            return False
 
     # TODO: implement these methods
     def update_film_schedule(self, film_id, start_time):

@@ -31,7 +31,7 @@ export default function Searchbar() {
             </div>
             <div className="flex flex-col flex-grow overflow-auto">
                 {searchResults.map((movie) => (
-                    <Schedulebox title={movie[1]} id={movie[0]} />
+                    <Schedulebox movie = {movie} />
                 ))}
             </div>
         </div>

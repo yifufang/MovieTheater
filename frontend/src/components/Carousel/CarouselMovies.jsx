@@ -5,9 +5,9 @@ import "slick-carousel/slick/slick-theme.css";
 import MovieCards from "../MovieCards/MovieCards";
 import movieData from "../../Statics/movies.json";
 
-export default function CarouselMovies({title}) {
-  const movies = movieData.slice(0,20).map((movie) => {
-    return <MovieCards movie={movie} />;
+export default function CarouselMovies({title, movieList}) {
+  const movies = movieList.map((movie) => {
+    return <MovieCards info={movie} />;
   });
   var settings = {
     infinite: true,

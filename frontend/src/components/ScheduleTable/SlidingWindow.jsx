@@ -3,6 +3,7 @@ import SlidingPane from "react-sliding-pane";
 import "react-sliding-pane/dist/react-sliding-pane.css"; // Import the styles
 import Searchbar from "./Searchbar";
 
+
 const SlidingWindow = () => {
   const [isPaneOpen, setIsPaneOpen] = useState(false);
 
@@ -18,7 +19,6 @@ const SlidingWindow = () => {
       >
         Schedule Movie
       </button>
-
       <SlidingPane
         isOpen={isPaneOpen}
         onRequestClose={() => setIsPaneOpen(false)}

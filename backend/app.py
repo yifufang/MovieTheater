@@ -24,6 +24,7 @@ from flask import Flask, \
 from config import app
 from routes.auth import auth
 from routes.emp import emp
+from routes.other import other
 
 
 # for api testing, modify here and go to '<your URL>/test'
@@ -36,6 +37,7 @@ def test():
 # authentication routes
 app.register_blueprint(auth)
 app.register_blueprint(emp)
+app.register_blueprint(other)
 
 
 if __name__ == '__main__':

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import SlidingPane from "react-sliding-pane";
 import "react-sliding-pane/dist/react-sliding-pane.css"; // Import the styles
+import ScheduleDetail from "./ScheduleDetail";
 
-const SlidingScheduleDetail = () => {
+const SlidingScheduleButton = ({movie}) => {
   const [isPaneOpen, setIsPaneOpen] = useState(false);
 
   const handleToggle = () => {
@@ -24,11 +25,11 @@ const SlidingScheduleDetail = () => {
         width="600px"
       >
         <div>
-
+            <ScheduleDetail movie = {movie} />
         </div>
       </SlidingPane>
     </div>
   );
 };
 
-export default SlidingScheduleDetail;
+export default SlidingScheduleButton;

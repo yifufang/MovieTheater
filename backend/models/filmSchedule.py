@@ -16,5 +16,7 @@ class filmSchedule:
         self.film_id = film_schedule[2]
         self.start_time = film_schedule[3]
         ##optional attribute
+
+        
         
     
