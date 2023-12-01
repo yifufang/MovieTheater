@@ -9,9 +9,7 @@ import PageLayout from "./components/Pagelayout/PageLayout";
 
 //import chidlren pages of /
 import Membership from "./pages/Membership";
-import BrowseMovies from "./pages/bookTickets/BrowseMovies";
-import BrowseMovie from "./pages/bookTickets/BrowseMovie";
-import BookTicket from "./pages/bookTickets/BrowseShowtime";
+import BookTickets from "./pages/BookTickets";
 import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
 import Dashboard from "./pages/Dashboard";
@@ -28,16 +26,13 @@ export default function App() {
         <Route>
           <Route path="/" element={<PageLayout><Home /></PageLayout>} />
           <Route path="/membership" element={<PageLayout><Membership /></PageLayout>} />
-          <Route path="/book-tickets" element={<PageLayout><BrowseMovies /></PageLayout>} />
+          <Route path="/book-tickets" element={<PageLayout><BookTickets /></PageLayout>} />
           <Route path="/contact-us" element={<PageLayout><ContactUs /></PageLayout>} />
           <Route path="/about-us" element={<PageLayout><AboutUs /></PageLayout>} />
           <Route path="/dashboard" element={<PageLayout><Dashboard /></PageLayout>} />
           <Route path="/test" element={<PageLayout><Test /></PageLayout>} />
         </Route>
-        <Route>
-          <Route path="/book-tickets/:title" element={<PageLayout><BrowseMovie /></PageLayout>} />
-          <Route path="/book-tickets/:title/showtime" element={<PageLayout><BookTicket /></PageLayout>} />
-        </Route>
+
         <Route>
           <Route path="/auth/login" element={<Login />} />
           <Route path="/auth/Register" element={<Register />} />

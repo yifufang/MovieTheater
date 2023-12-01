@@ -22,7 +22,7 @@ export const Register = () => {
       .then((response) => response.json())
       .then((data) => {
         if (!data.error) {
-          window.location.href = "/";
+          window.location.href = "/auth/login";
         } else {
           alert(data.message);
         }
