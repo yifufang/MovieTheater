@@ -7,7 +7,7 @@ import movieData from "../../Statics/movies.json";
 
 export default function CarouselMovies({title, movieList}) {
   const movies = movieList.map((movie) => {
-    return <MovieCards info={movie} />;
+    return <MovieCards title={movie[5]} thumbnail={movie[10]} />;
   });
   var settings = {
     infinite: true,

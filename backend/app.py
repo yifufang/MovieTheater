@@ -21,7 +21,12 @@ from flask import Flask, \
     make_response, \
     request, \
     json
+
+# instances initialized here
 from config import app
+from models.multiplex import Multiplex
+
+# routes here
 from routes.auth import auth
 from routes.emp import emp
 from routes.other import other

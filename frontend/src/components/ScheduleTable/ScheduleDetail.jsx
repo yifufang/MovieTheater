@@ -45,8 +45,12 @@ export default function ScheduleDetail({ movie }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        alert("Schedule Added!");
+        if (data.status === "success") {
+          alert("Add schedule successfully!");
+        }
+        else {
+          alert("Add schedule failed!");
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -55,7 +59,7 @@ export default function ScheduleDetail({ movie }) {
     <div>
       <div className="flex flex-row">
         <div className="w-1/2">
-          <MovieCards movie={movie_info} />
+          <MovieCards title={movie_info.title} thumbnail={movie_info.thumbnail} />
         </div>
         <div className="w-1/2">
           <div className="flex flex-col p-2">

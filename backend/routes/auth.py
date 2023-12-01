@@ -1,7 +1,7 @@
 from flask import Blueprint, request, Response, jsonify, json, session
 import jwt
 from config import app
-
+from models.multiplex import Multiplex
 
 # authentication routes
 auth = Blueprint('auth', __name__)

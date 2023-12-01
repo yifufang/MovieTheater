@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MovieBox from "./MovieBox";
 import SlidingWindow from "./SlidingWindow";
+import AvailableSeats from "../Statistics/SliderTheaterConfig";
 
 export default function MovieScheduleTable() {
   const [activeTab, setActiveTab] = useState("a");
@@ -43,7 +44,8 @@ export default function MovieScheduleTable() {
   return (
     <div className="w-3/4 mx-auto mt-4">
       <h1 className="text-2xl font-bold text-left p-3 mb-3">Schedule Control Panel</h1>
-      <div className="grid grid-cols-5 gap-5">
+      <div className="grid grid-cols-6 gap-5">
+        <AvailableSeats />
         <button
           className="focus:text-white p-4 rounded focus:bg-indigo-500 shadow-md flex items-center justify-center"
           onClick={() => SwitchTab("a")}

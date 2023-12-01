@@ -8,6 +8,7 @@ from flask import Blueprint, \
     json
 import controllers.utility as utility
 from models.employee import employee
+from models.multiplex import Multiplex
 from config import app
 emp = Blueprint('employee', __name__)
 
@@ -55,8 +56,31 @@ def Remove():
         else:
             output = {'message': 'failed'}
             return Response(json.dumps(output), status=400)
-    
 
-    
+@emp.route('/employee/addSeat', methods=['POST'])
+def addSeat():
+    if request.method == 'POST':
+        theater_id = request.json['theater_id']
+        number_of_seats = request.json['number_of_seats']
+        added = Emp.add_seats_to_theater(theater_id, number_of_seats)
+        if added:
+            output = {'message': 'success'}
+            return Response(json.dumps(output), status=200)
+        else:
+            output = {'message': 'failed'}
+            return Response(json.dumps(output), status=400)
+
+@emp.route('/employee/removeSeat', methods=['DELETE'])
+def removeSeat():
+    if request.method == 'DELETE':
+        theater_id = request.json['theater_id']
+        number_of_seats = request.json['number_of_seats']
+        removed = Emp.remove_seats_from_theater(theater_id, number_of_seats)
+        if removed:
+            output = {'message': 'success'}
+            return Response(json.dumps(output), status=200)
+        else:
+            output = {'message': 'failed'}
+            return Response(json.dumps(output), status=400)
 
 
