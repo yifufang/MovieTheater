@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import SlidingSeatMap from "./SlidingSeatMap";
 
-export default function ScheduleBox(props) {
+export default function ShowtimeBox(props) {
   const [title, setTitle] = useState(props.title);
   const [imageLink, setImageLink] = useState(props.imageLink);
   const [schedules, setSchedules] = useState([]);
@@ -44,8 +45,6 @@ export default function ScheduleBox(props) {
       .then((response) => response.json())
       .then((data) => {
         if (!data.error) {
-          console.log("schedule box times: ", data)
-          console.log(typeof(data[0]))
           data = sortTimeStrs(data);
           setSchedules(data);
         } else {
@@ -60,17 +59,12 @@ export default function ScheduleBox(props) {
         <div className="w-32 h-32 overflow-hidden rounded-full bg-cover bg-center">
           <img src={imageLink} alt="movie" />
         </div>
-        <p className="font-extrabold text-xl">{title}</p>
+        <p className="font-extrabold text-3xl p-10">{title}</p>
       </div>
 
-      <div className="w-full m-5 space-x-5">
+      <div className="flex w-full m-5 space-x-5">
         {schedules.map((time, i) => (
-          <button
-            className="bg-indigo-500 text-white rounded-3xl px-4 py-2 hover:bg-indigo-900 transform active:scale-75 transition-transform"
-            key={i}
-          >
-            {convertTimeStr(time)}
-          </button>
+          <SlidingSeatMap time={convertTimeStr(time)} key={i} theaterSelected={props.theaterSelected}/>
         ))}
       </div>
     </div>

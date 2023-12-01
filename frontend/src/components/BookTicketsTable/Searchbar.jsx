@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Schedulebox from "./Seat";
+import Schedulebox from "./SearchbarMovieBox";
 
 export default function Searchbar() {
     const [searchQuery, setSearchQuery] = useState("");

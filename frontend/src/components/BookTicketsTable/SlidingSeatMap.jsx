@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import SlidingPane from "react-sliding-pane";
 import "react-sliding-pane/dist/react-sliding-pane.css"; // Import the styles
-import Searchbar from "./Searchbar";
+import SeatMap from "./SeatMap";
 
-const SlidingWindow = () => {
+const SlidingSeatMap = (props) => {
   const [isPaneOpen, setIsPaneOpen] = useState(false);
+  const [time, setTime] = useState(props.time);
 
   const handleToggle = () => {
     setIsPaneOpen(!isPaneOpen);
@@ -13,10 +14,10 @@ const SlidingWindow = () => {
   return (
     <div className="flex justify-center items-center">
       <button
-        className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full animate-pulse transform active:scale-75 transition-transform"
+        className=" bg-blue-500 hover:bg-blue-700 text-white text-xl font-bold py-2 px-4 rounded-full animate-none transform active:scale-75 transition-transform"
         onClick={handleToggle}
       >
-        Schedule Movie
+        {time}
       </button>
 
       <SlidingPane
@@ -24,12 +25,15 @@ const SlidingWindow = () => {
         onRequestClose={() => setIsPaneOpen(false)}
         width="600px"
       >
-        <div>
+        {/* <div>
             <Searchbar />
+        </div> */}
+        <div>
+          <SeatMap theaterSelected={props.theaterSelected}/>
         </div>
       </SlidingPane>
     </div>
   );
 };
 
-export default SlidingWindow;
+export default SlidingSeatMap;

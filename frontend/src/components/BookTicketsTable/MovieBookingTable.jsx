@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ScheduleBox from "./ScheduleBox";
+import ShowtimeBox from "./ShowtimeBox";
+import Searchbar from "./Searchbar";
 
 export default function MovieBookingTable() {
   const [activeTab, setActiveTab] = useState("a");
@@ -19,12 +20,11 @@ export default function MovieBookingTable() {
     fetch("http://localhost:5000/book/movies", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ theater_id: 'a' }),
+      body: JSON.stringify({ theater_id: "a" }),
     })
       .then((response) => response.json())
       .then((data) => {
         if (!data.error) {
-          console.log("ssssssssssss");
           console.log(data);
           console.log("data.theaters: ", data.theaters);
           setTheaters(data.theaters);
@@ -42,7 +42,6 @@ export default function MovieBookingTable() {
 
   return (
     <div className="w-3/4 mx-auto mt-4">
-      <h1 className="text-2xl font-bold text-left">Book your ticket here</h1>
       <div className="grid grid-cols-5 gap-5">
         <button
           className="focus:text-white p-4 rounded focus:bg-indigo-500 shadow-md flex items-center justify-center"
@@ -69,47 +68,50 @@ export default function MovieBookingTable() {
           Theater D
         </button>
       </div>
+      <div className="p-5">
+        <Searchbar />
+      </div>
 
       <div className="flex flex-col flex-grow overflow-auto">
         {activeTab === "a" &&
           movies["a"].map((movie, i) => (
-            <ScheduleBox
+            <ShowtimeBox
               key={i}
               title={movie[0]}
               filmId={movie[1]}
               imageLink={movie[2]}
               theaterSelected={activeTab}
-            ></ScheduleBox>
+            ></ShowtimeBox>
           ))}
         {activeTab === "b" &&
           movies["b"].map((movie, i) => (
-            <ScheduleBox
+            <ShowtimeBox
               key={i}
               title={movie[0]}
               filmId={movie[1]}
               imageLink={movie[2]}
               theaterSelected={activeTab}
-            ></ScheduleBox>
+            ></ShowtimeBox>
           ))}
         {activeTab === "c" &&
           movies["c"].map((movie, i) => (
-            <ScheduleBox
+            <ShowtimeBox
               key={i}
               title={movie[0]}
               filmId={movie[1]}
               imageLink={movie[2]}
               theaterSelected={activeTab}
-            ></ScheduleBox>
+            ></ShowtimeBox>
           ))}
         {activeTab === "d" &&
           movies["d"].map((movie, i) => (
-            <ScheduleBox
+            <ShowtimeBox
               key={i}
               title={movie[0]}
               filmId={movie[1]}
               imageLink={movie[2]}
               theaterSelected={activeTab}
-            ></ScheduleBox>
+            ></ShowtimeBox>
           ))}
       </div>
     </div>

@@ -9,8 +9,7 @@ import PageLayout from "./components/Pagelayout/PageLayout";
 
 //import chidlren pages of /
 import Membership from "./pages/Membership";
-import MovieBookingTable from "./components/BookTicketsTable/MovieBookingTable";
-import BookTickets from "./pages/bookTickets/BookTickets";
+import BookTickets from "./pages/BookTickets";
 import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
 import Dashboard from "./pages/Dashboard";
@@ -33,9 +32,7 @@ export default function App() {
           <Route path="/dashboard" element={<PageLayout><Dashboard /></PageLayout>} />
           <Route path="/test" element={<PageLayout><Test /></PageLayout>} />
         </Route>
-        <Route>
-          {/* <Route path="/book-tickets/:title/:time" element={<PageLayout><MovieBookingTable /></PageLayout>} /> */}
-        </Route>
+
         <Route>
           <Route path="/auth/login" element={<Login />} />
           <Route path="/auth/Register" element={<Register />} />

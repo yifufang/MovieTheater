@@ -1,14 +1,20 @@
-import React, { useEffect, useState } from "react";
-import SlidingScheduleDetail from "./SlidingScheduleDetail";
+import React, { useState } from 'react';
 
-export default function Schedulebox({title, id}) {
+const Seat = ({ id, isReserved, isSelected, onSelect }) => {
+  const seatStyle = {
+    backgroundColor: isReserved ? 'gray' : isSelected ? 'blue' : 'green',
+    cursor: isReserved ? 'not-allowed' : 'pointer',
+  };
+
   return (
-    <div className="shadow-md border border-gray-100 p-2 rounded bg-white mt-6 flex justify-between items-end">
-      <div className="flex flex-col p-2">
-        <p className="font-extrabold text-xl">{title}</p>
-        <p className="font-light text-gray-700 text-sm">Movie ID: {id}</p>
-      </div>
-        <SlidingScheduleDetail />
+    <div
+      className={`seat p-2 m-1 text-white ${isReserved ? 'bg-gray-500' : isSelected ? 'bg-blue-500' : 'bg-green-500'}`}
+      style={seatStyle}
+      onClick={() => onSelect(id)}
+    >
+      {id}
     </div>
   );
-}
+};
+
+export default Seat;

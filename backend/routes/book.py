@@ -18,7 +18,6 @@ def get_theaters_movies():
         theater_id = request.json["theater_id"]
         theaters = booking.get_all_theaters_name_id()
         theaterA_movies_info = booking.get_movies_info_for_theater_A()
-        print(theaterA_movies_info)
         theaterB_movies_info = booking.get_movies_info_for_theater_B()
         theaterC_movies_info = booking.get_movies_info_for_theater_C()
         theaterD_movies_info = booking.get_movies_info_for_theater_D()
@@ -39,3 +38,9 @@ def get_schedules():
         schedules = booking.get_film_schedules_given_theaterID_filmID(theater_id, film_id)
         return Response(json.dumps(schedules), status=200)
     
+@book.route('/book/seats', methods=['POST'])
+def get_seats():
+    if request.method == 'POST':
+        theater_id = request.json["theater_id"]
+        seats = booking.get_all_seats_given_theaterID(theater_id)
+        return Response(json.dumps(seats), status=200)
