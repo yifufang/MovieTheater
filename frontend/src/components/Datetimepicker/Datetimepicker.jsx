@@ -6,7 +6,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 
 export default function Datetimepicker({onDateChange}) {
-  const [v, setValue] = React.useState(dayjs('2023-12-15T15:00'));
+  const [v, setValue] = React.useState(dayjs());
   const handleDateChange = (date) => {
     setValue(date);
     onDateChange(v.format("YYYY-MM-DD HH:mm:ss"));
