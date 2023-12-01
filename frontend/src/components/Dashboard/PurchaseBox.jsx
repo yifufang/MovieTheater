@@ -77,9 +77,9 @@ export default function PurchaseBox({
         <p className="font-extrabold text-xl">
           Cancelled:
           {cancelled ? (
-            <span className="text-red-500">Cancelled</span>
+            <span className="text-red-500">YES</span>
           ) : (
-            <span className="text-green-500">UnCancelled</span>
+            <span className="text-green-500">No</span>
           )}
         </p>
         <p className="font-extrabold text-xl">
