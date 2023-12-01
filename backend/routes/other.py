@@ -33,3 +33,9 @@ def GetAailableSeats():
             'd': d
         }
         return Response(json.dumps(output), status=200)
+
+@other.route('/other/getTheaterData', methods=['GET'])
+def getTheaterData():
+    if request.method == 'GET':
+        output = Multiplex.getTheaters()
+        return Response(json.dumps(output), status=200)

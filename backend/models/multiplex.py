@@ -9,6 +9,13 @@ class multiplex:
             'c': theater('c'),
             'd': theater('d')
         }
+    #get all theaters    
+    def getTheaters(self):
+        cur = app.mysql.connection.cursor()
+        cur.execute("SELECT * FROM theaters")
+        data = cur.fetchall()
+        cur.close()
+        return data
 
 with app.app_context():
     Multiplex = multiplex()

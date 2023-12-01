@@ -19,9 +19,6 @@ export default function Footer() {
                 <a className="text-gray-600 hover:text-gray-800" href="/book-tickets">Book Tickets</a>
               </li>
               <li>
-                <a className="text-gray-600 hover:text-gray-800" href="/contact-us">Contact Us</a>
-              </li>
-              <li>
                 <a className="text-gray-600 hover:text-gray-800" href="/about-us">About Us</a>
               </li>
             </nav>
