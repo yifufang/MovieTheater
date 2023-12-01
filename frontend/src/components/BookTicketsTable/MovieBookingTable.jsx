@@ -26,13 +26,13 @@ export default function MovieBookingTable() {
       .then((data) => {
         if (!data.error) {
           console.log(data);
-          console.log("data.theaters: ", data.theaters);
+          console.log("data.moviesInfoTheater: ", data.moviesInfoTheater);
           setTheaters(data.theaters);
           setMovies({
-            a: data.moviesInfoTheaterA,
-            b: data.moviesInfoTheaterB,
-            c: data.moviesInfoTheaterC,
-            d: data.moviesInfoTheaterD,
+            a: data.moviesInfoTheater['a'],
+            b: data.moviesInfoTheater['b'],
+            c: data.moviesInfoTheater['c'],
+            d: data.moviesInfoTheater['d'],
           });
         } else {
           alert(data.message);
@@ -42,44 +42,29 @@ export default function MovieBookingTable() {
 
   return (
     <div className="w-3/4 mx-auto mt-4">
-      <div className="grid grid-cols-5 gap-5">
-        <button
+      <div className="grid grid-cols-4 gap-5">
+        {theaters.map((theater, i) => (
+          <button
+          key={i}
           className="focus:text-white p-4 rounded focus:bg-indigo-500 shadow-md flex items-center justify-center"
-          onClick={() => SwitchTab("a")}
+          onClick={() => SwitchTab(theater[0])}
         >
-          Theater A
+          {theater[1]}
         </button>
-        <button
-          className="p-4 rounded bg-white text-indigo-500 shadow-md flex items-center justify-center focus:bg-indigo-500 focus:text-white"
-          onClick={() => SwitchTab("b")}
-        >
-          Theater B
-        </button>
-        <button
-          className="p-4 rounded bg-white text-indigo-500 shadow-md flex items-center justify-center focus:bg-indigo-500 focus:text-white"
-          onClick={() => SwitchTab("c")}
-        >
-          Theater C
-        </button>
-        <button
-          className="p-4 rounded bg-white text-indigo-500 shadow-md flex items-center justify-center focus:bg-indigo-500 focus:text-white"
-          onClick={() => SwitchTab("d")}
-        >
-          Theater D
-        </button>
+        ))}
       </div>
       <div className="p-5">
         <Searchbar />
       </div>
 
-      <div className="flex flex-col flex-grow overflow-auto">
+      <div className="flex flex-col flex-grow">
         {activeTab === "a" &&
           movies["a"].map((movie, i) => (
             <ShowtimeBox
               key={i}
-              title={movie[0]}
-              filmId={movie[1]}
-              imageLink={movie[2]}
+              title={movie[5]}
+              filmId={movie[2]}
+              imageLink={movie[10]}
               theaterSelected={activeTab}
             ></ShowtimeBox>
           ))}
@@ -87,9 +72,9 @@ export default function MovieBookingTable() {
           movies["b"].map((movie, i) => (
             <ShowtimeBox
               key={i}
-              title={movie[0]}
-              filmId={movie[1]}
-              imageLink={movie[2]}
+              title={movie[5]}
+              filmId={movie[2]}
+              imageLink={movie[10]}
               theaterSelected={activeTab}
             ></ShowtimeBox>
           ))}
@@ -97,9 +82,9 @@ export default function MovieBookingTable() {
           movies["c"].map((movie, i) => (
             <ShowtimeBox
               key={i}
-              title={movie[0]}
-              filmId={movie[1]}
-              imageLink={movie[2]}
+              title={movie[5]}
+              filmId={movie[2]}
+              imageLink={movie[10]}
               theaterSelected={activeTab}
             ></ShowtimeBox>
           ))}
@@ -107,9 +92,9 @@ export default function MovieBookingTable() {
           movies["d"].map((movie, i) => (
             <ShowtimeBox
               key={i}
-              title={movie[0]}
-              filmId={movie[1]}
-              imageLink={movie[2]}
+              title={movie[5]}
+              filmId={movie[2]}
+              imageLink={movie[10]}
               theaterSelected={activeTab}
             ></ShowtimeBox>
           ))}

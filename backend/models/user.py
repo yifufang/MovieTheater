@@ -22,19 +22,6 @@ class user:
         ##optional attribute
         self.tickets_bought = []
 
-    # Frontend verifies if seats are valid through seat map, then asks backend to register.
-    # Update "seat.is_occupied" and create a new "ticket" in db for each seat purchased.
-    def Book_tickets(self, price, seat_ids, schedule_id):
-        cur = app.mysql.connection.cursor()
-        for seat in seat_ids:
-            cur.execute("UPDATE seats SET is_occupied = 1 WHERE (theater_id = %s) and (seat_id = %s)", (seat[0], seat[1:]))
-             # defaults: ticket_id (auto_inc, unique), cancelled=0, cancelled=False, timestamp=CURRENT_TIMESTAMP
-            cur.execute("INSERT INTO tickets (price, theater_id, seat_id, user_id, schedule_id) VALUES\
-                        (%s, %s, %s, %s, %s)", (price, seat[0], seat[1:], self.user_id, schedule_id))
-            self.Update_reward_point(seat, True)
-        app.mysql.connection.commit()
-        cur.close()
-
     # Reverse actions of Book_tickets() except update the "ticket.cancelled' field instead of deleting entry
     def Cancel_tickets(self, ticket_id):
         try:
@@ -48,11 +35,23 @@ class user:
             app.mysql.connection.commit()
             cur.close()
             
-            self.Update_reward_point(False)
+            self.Update_reward_point(False, ticket_id)
             return True
         except Exception as e:
             print(e)
             return False
+        
+    def Book_tickets(self, price, theater_id, seat_ids, schedule_id):
+        for seat_id in seat_ids:
+            cur = app.mysql.connection.cursor()
+            # cur.execute("UPDATE seats SET is_occupied = 1 WHERE (theater_id = %s) and (seat_id = %s)", (seat[0], seat[1:]))
+             # defaults: ticket_id (auto_inc, unique), cancelled=0, cancelled=False, timestamp=CURRENT_TIMESTAMP
+            cur.execute("INSERT INTO tickets (price, theater_id, seat_id, user_id, schedule_id) VALUES (%s, %s, %s, %s, %s)", (price, theater_id, seat_id, self.user_id, schedule_id))
+            cur.execute("SELECT ticket_id FROM tickets WHERE (theater_id = %s) and (seat_id = %s) and (user_id = %s) and (schedule_id = %s)", (theater_id, seat_id, self.user_id, schedule_id))
+            ticket = cur.fetchone()
+            app.mysql.connection.commit()
+            cur.close()
+            self.Update_reward_point(True, ticket[0])
 
     # P is premium member, R is regular member
     def Buy_membership(self, isUpgrade):
@@ -70,23 +69,25 @@ class user:
         cur.close()
         return user[5]
     
-    # add one point per dollar spent if buying, subtract if cancelling
-    def Update_reward_point(self, isBuying):
+ # add one point per dollar spent if buying, subtract if cancelling
+    def Update_reward_point(self, isBuying, ticket_id):
         try:
             cur = app.mysql.connection.cursor()
             cur.execute("SELECT * FROM users WHERE (user_id = %s)", (self.user_id,))
             user = cur.fetchone()
+            cur.execute("SELECT * FROM tickets WHERE (ticket_id = %s)", (ticket_id,))
+            price = cur.fetchone()[1]
             if isBuying:
-                cur.execute("UPDATE users SET reward_point = %s WHERE (user_id = %s)", (user[6] + 1, self.user_id))
+                cur.execute("UPDATE users SET reward_point = %s WHERE (user_id = %s)", (user[6] + price, self.user_id))
             else:
-                cur.execute("UPDATE users SET reward_point = %s WHERE (user_id = %s)", (user[6] - 1, self.user_id))
+                cur.execute("UPDATE users SET reward_point = %s WHERE (user_id = %s)", (user[6] - price, self.user_id))
             app.mysql.connection.commit()
             cur.close()
             return True
         except Exception as e:
             print(e)
             return False
-        
+    
     # Return list of movies watched in past 30 days
     def Get_watch_history(self):
         cur = app.mysql.connection.cursor()

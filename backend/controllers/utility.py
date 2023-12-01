@@ -34,3 +34,14 @@ def check_if_employee(user_id):
         return True
     else:
         return False
+
+def check_if_user(user_id):
+    cur = app.mysql.connection.cursor()
+    cur.execute("SELECT * FROM users WHERE user_id = %s AND (membership = 'R' OR membership = 'P')", (user_id,))
+    data = cur.fetchall()
+    cur.close()
+    if data:
+        return True
+    else:
+        return False
+    

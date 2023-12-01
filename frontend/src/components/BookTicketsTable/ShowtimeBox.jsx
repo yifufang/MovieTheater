@@ -5,6 +5,7 @@ export default function ShowtimeBox(props) {
   const [title, setTitle] = useState(props.title);
   const [imageLink, setImageLink] = useState(props.imageLink);
   const [schedules, setSchedules] = useState([]);
+  const [scheduleId, setScheduleId] = useState();
 
   function convertTimeStr(timeStr) {
     // Create a new Date object by parsing the date string
@@ -19,7 +20,13 @@ export default function ShowtimeBox(props) {
     return formattedTime;
   }
 
-  function sortTimeStrs(timeStrList) {
+  function sortTimeStrs(data) {
+    let timeStrList = [];
+    data.map((e)=>(
+      timeStrList.push(e[1])
+    ));
+    if(timeStrList.length < 2)
+      return timeStrList;
     // Function to parse date strings and compare them
     const compareDates = (a, b) => {
       const dateA = new Date(a);
@@ -33,7 +40,6 @@ export default function ShowtimeBox(props) {
   }
 
   useEffect(() => {
-    // console.log(theaterSelected)
     fetch("http://localhost:5000/book/schedules", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -45,8 +51,11 @@ export default function ShowtimeBox(props) {
       .then((response) => response.json())
       .then((data) => {
         if (!data.error) {
-          data = sortTimeStrs(data);
-          setSchedules(data);
+          console.log(data);
+          console.log(data[0][1]);
+          setSchedules(sortTimeStrs(data));
+          setScheduleId(data[0][0]);
+          console.log(scheduleId)
         } else {
           alert(data.message);
         }
@@ -64,7 +73,7 @@ export default function ShowtimeBox(props) {
 
       <div className="flex w-full m-5 space-x-5">
         {schedules.map((time, i) => (
-          <SlidingSeatMap time={convertTimeStr(time)} key={i} theaterSelected={props.theaterSelected}/>
+          <SlidingSeatMap scheduleId={scheduleId} time={convertTimeStr(time)} key={i} theaterSelected={props.theaterSelected}/>
         ))}
       </div>
     </div>

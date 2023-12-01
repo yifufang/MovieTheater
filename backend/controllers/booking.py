@@ -8,44 +8,19 @@ def get_all_theaters_name_id():
     cur.close()
     return data
 
-
-def get_movies_info_for_theater_A():
-    cur = app.mysql.connection.cursor()
-    cur.execute("SELECT title, movies.film_id, thumbnail FROM movies.film_schedules INNER JOIN movies ON movies.film_id = film_schedules.film_id WHERE theater_id = %s group by movies.film_id", ('a',))
-    data = cur.fetchall()
-    cur.close()
-    return data
-
-def get_movies_info_for_theater_B():
-    cur = app.mysql.connection.cursor()
-    cur.execute("SELECT title, movies.film_id, thumbnail FROM movies.film_schedules INNER JOIN movies ON movies.film_id = film_schedules.film_id WHERE theater_id = %s group by movies.film_id", ('b',))
-    data = cur.fetchall()
-    cur.close()
-    return data
-
-def get_movies_info_for_theater_C():
-    cur = app.mysql.connection.cursor()
-    cur.execute("SELECT title, movies.film_id, thumbnail FROM movies.film_schedules INNER JOIN movies ON movies.film_id = film_schedules.film_id WHERE theater_id = %s group by movies.film_id", ('c',))
-    data = cur.fetchall()
-    cur.close()
-    return data
-
-def get_movies_info_for_theater_D():
-    cur = app.mysql.connection.cursor()
-    cur.execute("SELECT title, movies.film_id, thumbnail FROM movies.film_schedules INNER JOIN movies ON movies.film_id = film_schedules.film_id WHERE theater_id = %s group by movies.film_id", ('d',))
-    data = cur.fetchall()
-    cur.close()
-    return data
-
 def get_film_schedules_given_theaterID_filmID(theater_id, movie_id):
     cur = app.mysql.connection.cursor()
-    cur.execute("SELECT start_time FROM film_schedules WHERE theater_id = %s AND film_id = %s", (theater_id, movie_id,))
+    cur.execute("SELECT schedule_id, start_time FROM film_schedules WHERE theater_id = %s AND film_id = %s", (theater_id, movie_id,))
     data = cur.fetchall()
     cur.close()
-    output = []
-    for schedule in data:
-        output.append(schedule[0])
-    return output
+    return data
+
+def get_all_occupied_seats_given_scheduleID(schedule_id):
+    cur = app.mysql.connection.cursor()
+    cur.execute("SELECT seat_id FROM tickets WHERE schedule_id = %s", (schedule_id,))
+    data = cur.fetchall()
+    cur.close()
+    return data
 
 def get_all_seats_given_theaterID(theater_id):
     cur = app.mysql.connection.cursor()
@@ -53,3 +28,12 @@ def get_all_seats_given_theaterID(theater_id):
     data = cur.fetchall()
     cur.close()
     return data
+
+def get_available_seats(allSeats, occupiedSeats):
+    available_seats = [list(seat) for seat in allSeats]
+    for i in range(len(available_seats)):
+        for j in range(len(occupiedSeats)):
+            if occupiedSeats[j][0] == allSeats[i][0]:
+                available_seats[i][1] = 1
+
+    return available_seats

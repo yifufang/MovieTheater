@@ -6,30 +6,6 @@ from models.multiplex import Multiplex
 # authentication routes
 auth = Blueprint('auth', __name__)
 
-# @app.route("/@me")
-# def get_current_user():
-#     user_id = session.get("user_id")
-#     if not user_id:
-#         return jsonify({"error" : "Not a valid user"}), 401
-#
-#     user = User.query.filter_by(id=user_id).first()
-#     return jsonify({
-#         "id": user.id,
-#         "email": user.email
-#     })
-
-
-# @app.route("/auth/verify", methods=['POST'])
-# def verify_token():
-#     frontend_token = request.json["token"]
-#     backend_token = app.redis.get('token')
-#     if frontend_token == backend_token:
-#         response = {'message': 'success', 'error': False, 'is_authenticated': True}
-#     else:
-#         response = {'message': 'success', 'error': False, 'is_authenticated': False}
-#     return Response(json.dumps(response), status=200)
-
-
 @auth.route('/auth/login', methods=['POST'])
 def login():
     if request.method == 'POST':
@@ -64,7 +40,7 @@ def login():
             return Response(json.dumps({'message': 'success', 'error': False, 'data': data, 'token': token}), status=200)
         else:
             # return error message to frontend
-            return Response(json.dumps({'message': 'success', 'error': True}), status=401)
+            return Response(json.dumps({'message': 'Incorrect email or password. Please try again.', 'error': True}), status=401)
 
 
 @auth.route('/auth/signup', methods=['POST'])
@@ -81,7 +57,7 @@ def signup():
 
         if existing_user:
             cur.close()
-            return Response(json.dumps({'error': True, 'message': 'User registration failed'}), status=401)
+            return Response(json.dumps({'error': True, 'message': 'User registration failed, email already exists.'}), status=401)
         else:
             # create a new user row to table
             cur = app.mysql.connection.cursor()
@@ -89,11 +65,11 @@ def signup():
                         (email, password, first_name, last_name))
             app.mysql.connection.commit()
             cur.close()
-            return Response(json.dumps({'error': False, 'message': 'User registration successfully'}), status=200)
+            return Response(json.dumps({'error': False, 'message': 'User registration successful'}), status=200)
 
 
 @auth.route('/auth/logout', methods=['GET'])
 def logout():
-    if request.method == 'POST':
+    if request.method == 'GET':
         app.redis.flushall()
-    return Response(json.dumps({'message': 'successfully logged out'}), status=200)
+    return Response(json.dumps({'message': 'Successfully logged out'}), status=200)

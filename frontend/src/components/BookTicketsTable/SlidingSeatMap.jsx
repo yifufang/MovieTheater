@@ -29,7 +29,7 @@ const SlidingSeatMap = (props) => {
             <Searchbar />
         </div> */}
         <div>
-          <SeatMap theaterSelected={props.theaterSelected}/>
+          <SeatMap scheduleId={props.scheduleId} theaterSelected={props.theaterSelected}/>
         </div>
       </SlidingPane>
     </div>
