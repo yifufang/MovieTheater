@@ -16,14 +16,12 @@ from routes.auth import auth
 from routes.emp import emp
 from routes.other import other
 from routes.book import book
-from routes.Member import member
 
 from models.employee import employee
 from models.user import user
 
 # authentication routes
-app.register_blueprint(member)
-app.register_blueprint(auth)
+# app.register_blueprint(member)
 
 # for api testing, modify here and go to '<your URL>/test'
 @app.route('/test')

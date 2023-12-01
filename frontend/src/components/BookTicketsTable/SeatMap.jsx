@@ -6,10 +6,11 @@ const SeatMap = (props) => {
   const [allSeats, setAllSeats] = useState([]);
 
   function handleSubmit() {
+    console.log(selectedSeats)
     fetch("http://localhost:5000/book/order", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ theater_id: theaterSelected, schedule_id: props.scheduleId, ordered_seats: selectedSeats }),
+      body: JSON.stringify({ theater_id: props.theaterSelected, schedule_id: props.scheduleId, ordered_seats: selectedSeats }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -77,7 +78,7 @@ const SeatMap = (props) => {
         <p className="mt-4">Selected Seats: {selectedSeats.join(", ")}</p>
       </div>
       <div className="flex justify-center p-5">
-        <button onClick={} className="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex mb-2 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+        <button onClick={handleSubmit} className="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex mb-2 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
           Book Selected Seats
         </button>
       </div>

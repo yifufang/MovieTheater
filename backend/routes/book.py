@@ -8,10 +8,11 @@ from flask import Blueprint, \
     json
 from controllers import booking
 from controllers import utility
-from models import user
+from models.user import user
 from config import app
 
-
+PRICE = 10
+SERVICE_FEE = 1.5
 book = Blueprint('book', __name__)
 
 with app.app_context():
@@ -55,8 +56,17 @@ def get_seats():
     
 @book.route('/book/order', methods=['POST'])
 def order_tickets():
-    theater_id = request.json["theater_id"]
-    schedule_id = request.json["schedule_id"]
-    ordered_seats = request.json["ordered_seats"]
     if request.method == 'POST':
-        user
+        theater_id = request.json["theater_id"]
+        schedule_id = request.json["schedule_id"]
+        ordered_seats = request.json["ordered_seats"]
+        print(ordered_seats)
+        print(user.membership)
+        if user.membership == 'R':
+            print('book ticket')
+            user.Book_tickets(PRICE + SERVICE_FEE, theater_id, ordered_seats, schedule_id)
+        elif user.membership == 'P':
+            print('book ticket')
+            user.Book_tickets(PRICE, theater_id, ordered_seats, schedule_id)
+        res = {'error': False, 'message':"succeed"}
+        return Response(json.dumps(res), status=200)

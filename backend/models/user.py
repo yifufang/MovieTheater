@@ -24,16 +24,19 @@ class user:
 
     # Frontend verifies if seats are valid through seat map, then asks backend to register.
     # Update "seat.is_occupied" and create a new "ticket" in db for each seat purchased.
-    def Book_tickets(self, price, seat_ids, schedule_id):
-        cur = app.mysql.connection.cursor()
-        for seat in seat_ids:
-            cur.execute("UPDATE seats SET is_occupied = 1 WHERE (theater_id = %s) and (seat_id = %s)", (seat[0], seat[1:]))
+    def Book_tickets(self, price, theater_id, seat_ids, schedule_id):
+        print(price)
+        print(theater_id)
+        print(seat_ids)
+        print(schedule_id)
+        for seat_id in seat_ids:
+            cur = app.mysql.connection.cursor()
+            # cur.execute("UPDATE seats SET is_occupied = 1 WHERE (theater_id = %s) and (seat_id = %s)", (seat[0], seat[1:]))
              # defaults: ticket_id (auto_inc, unique), cancelled=0, cancelled=False, timestamp=CURRENT_TIMESTAMP
-            cur.execute("INSERT INTO tickets (price, theater_id, seat_id, user_id, schedule_id) VALUES\
-                        (%s, %s, %s, %s, %s)", (price, seat[0], seat[1:], self.user_id, schedule_id))
-            self.Update_reward_point(seat, True)
-        app.mysql.connection.commit()
-        cur.close()
+            cur.execute("INSERT INTO tickets (price, theater_id, seat_id, user_id, schedule_id) VALUES (%s, %s, %s, %s, %s)", (price, theater_id, seat_id, self.user_id, schedule_id))
+            app.mysql.connection.commit()
+            cur.close()
+            self.Update_reward_point(price, True)
 
     # Reverse actions of Book_tickets() except update the "ticket.cancelled' field instead of deleting entry
     def Cancel_tickets(self, seat_ids):
@@ -53,20 +56,22 @@ class user:
         app.mysql.connection.commit()
         cur.close()
 
-    # P is premium member, R is regular member
-    def Get_membership(self):
-        cur = app.mysql.connection.cursor()
-        cur.execute("SELECT * FROM users WHERE (user_id = %s)", (self.user_id,))
-        user = cur.fetchone()
-        cur.close()
-        return user[5]
+    # # P is premium member, R is regular member
+    # def Get_membership(self):
+    #     cur = app.mysql.connection.cursor()
+    #     cur.execute("SELECT membership FROM users WHERE (user_id = %s)", (self.user_id,))
+    #     user = cur.fetchone()
+    #     cur.close()
+    #     print(user)
+    #     return user[0]
     
     # add one point per dollar spent if buying, subtract if cancelling
-    def Update_reward_point(self, seat, isBuying):
+    def Update_reward_point(self, price, isBuying):
+        if isBuying:
+            price += 1
+        else:
+            price -= 1
         cur = app.mysql.connection.cursor()
-        cur.execute("SELECT * FROM tickets WHERE (theater_id = %s) and (seat_id = %s)", (seat[0], seat[1:]))
-        ticket = cur.fetchone()
-        price = int(ticket[1]) if isBuying else -int(ticket[1])
         cur.execute("UPDATE users SET reward_point = reward_point + %s WHERE (user_id = %s)", (price, self.user_id))
         app.mysql.connection.commit()
         cur.close()
