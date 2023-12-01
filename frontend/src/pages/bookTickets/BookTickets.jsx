@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 // for now we import sample data, later we will make api call
 import ShowtimeCard from "../../components/Card/ShowtimeCard";
+import MovieBookingTable from "../../components/BookTicketsTable/MovieBookingTable"
 import img1 from "../../Statics/movieImages/five_nights_at_freddys.jpg";
 import img2 from "../../Statics/movieImages/killers_of_the_flower_moon.jpg";
 import img3 from "../../Statics/movieImages/after_death.jpg";
@@ -48,66 +49,58 @@ const movies = [
   "The Nun 2",
 ];
 
-export default function BrowseSchedule() {
-  console.log(sampleMovies[0].showtime)
-  let { title } = useParams();
-  let duration = null;
-  let image = findCurrentMovieImage(title);
-  let sTitle = convertToSpace(title);
-  findCurrentMovieInfo(title);
-  const [selectLocation, SetSelectLocation] = useState();
-  const [selectDate, SetSelectDate] = useState();
-  const [selectMovie, SetSelectMovie] = useState(sTitle);
+export default function BookTickets() {
 
   //convert title to text separated with underscore
-  function convertToUnderscore(title) {
-    return (title = title
-      .replace(/[^a-zA-Z0-9 ]/g, "")
-      .toLowerCase()
-      .replace(/ /g, "_"));
-  }
+  // function convertToUnderscore(title) {
+  //   return (title = title
+  //     .replace(/[^a-zA-Z0-9 ]/g, "")
+  //     .toLowerCase()
+  //     .replace(/ /g, "_"));
+  // }
 
-  //convert title to text separated with space
-  function convertToSpace(title) {
-    let preps = ["of", "on", "and", "or", "in", "a", "at"];
-    title = title.split("_");
-    for (let i = 0; i < title.length; i++) {
-      if (preps.indexOf(title[i]) === -1) {
-        title[i] = title[i].charAt(0).toUpperCase() + title[i].slice(1);
-      }
-    }
-    title = title.join(" ");
-    return title;
-  }
+  // //convert title to text separated with space
+  // function convertToSpace(title) {
+  //   let preps = ["of", "on", "and", "or", "in", "a", "at"];
+  //   title = title.split("_");
+  //   for (let i = 0; i < title.length; i++) {
+  //     if (preps.indexOf(title[i]) === -1) {
+  //       title[i] = title[i].charAt(0).toUpperCase() + title[i].slice(1);
+  //     }
+  //   }
+  //   title = title.join(" ");
+  //   return title;
+  // }
 
-  function findCurrentMovieImage() {
-    let image;
-    [...images.keys()].forEach((key) => {
-      if (title === key) {
-        image = images.get(key);
-      }
-    });
-    return image;
-  }
+  // function findCurrentMovieImage() {
+  //   let image;
+  //   [...images.keys()].forEach((key) => {
+  //     if (title === key) {
+  //       image = images.get(key);
+  //     }
+  //   });
+  //   return image;
+  // }
 
-  function findCurrentMovieInfo(title) {
-    for (let i = 0; i < sampleMovies.length; i++) {
-      let uTitle = convertToUnderscore(sampleMovies[i].title);
-      if (title === uTitle) {
-        duration = sampleMovies[i].duration;
-        break;
-      }
-    }
-  }
+  // function findCurrentMovieInfo(title) {
+  //   for (let i = 0; i < sampleMovies.length; i++) {
+  //     let uTitle = convertToUnderscore(sampleMovies[i].title);
+  //     if (title === uTitle) {
+  //       duration = sampleMovies[i].duration;
+  //       break;
+  //     }
+  //   }
+  // }
 
   //We will later implement api call to retrive movie info from backend
 
   return (
     <div className="">
       <div className="w-full h-10 flex text-xl bg-black">
-        <h1 className="m-auto justify-center font-bold text-white">Showtimes</h1>
+        <h1 className="m-auto justify-center font-bold text-white">Select your theater: </h1>
       </div>
-      <div className="flex text-2xl justify-center items-center space-x-5 m-1">
+      <MovieBookingTable></MovieBookingTable>
+      {/* <div className="flex text-2xl justify-center items-center space-x-5 m-1">
         <select
           className="border-solid border-2 border-black"
           value={selectLocation}
@@ -138,8 +131,8 @@ export default function BrowseSchedule() {
             <option key={i}>{movie}</option>
           ))}
         </select>
-      </div>
-      <div>
+      </div> */}
+      {/* <div>
       {sampleMovies.map((movie, i) => (
         <ShowtimeCard
           title={movie.title}
@@ -151,7 +144,7 @@ export default function BrowseSchedule() {
           key={i}
         ></ShowtimeCard>
       ))}
-      </div>
+      </div> */}
     </div>
   );
 }
