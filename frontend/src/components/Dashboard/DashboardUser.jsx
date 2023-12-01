@@ -1,10 +1,29 @@
 import React, { useState, useEffect } from "react";
+
 export default function DashboardUser() {
-  const user_info = JSON.parse(localStorage.getItem("user_info"));
-  const Fullname = user_info.first_name + " " + user_info.last_name;
-  const email = user_info.email;
-  const membership = user_info.membership;
-  const reward_points = user_info.reward_points;
+  const [member, setMember] = useState([]);
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/member", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({}),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (!data.error) {
+          console.log(data);
+          console.log("data.membership: ", data.membership);
+          console.log("data.movies: ", data.movies);
+          setMember(data.member);
+          setMovies(data.movies);
+        } else {
+          alert(data.message);
+        }
+      });
+  }, []);
+
 
   const [is_premium, setIsPremium] = useState(false);
   useEffect(() => {
@@ -14,6 +33,12 @@ export default function DashboardUser() {
       setIsPremium(false);
     }
   }, []);
+
+  const user_info = JSON.parse(localStorage.getItem("user_info"));
+  const Fullname = user_info.first_name + " " + user_info.last_name;
+  const email = user_info.email;
+  const membership = user_info.membership;
+  const reward_points = user_info.reward_points;
 
   return (
     <div>

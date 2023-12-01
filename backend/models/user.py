@@ -54,9 +54,9 @@ class user:
         cur.close()
 
     # P is premium member, R is regular member
-    def Get_membership(self, user_id):
+    def Get_membership(self):
         cur = app.mysql.connection.cursor()
-        cur.execute("SELECT * FROM users WHERE (user_id = %s)", (user_id,))
+        cur.execute("SELECT * FROM users WHERE (user_id = %s)", (self.user_id,))
         user = cur.fetchone()
         cur.close()
         return user[5]
