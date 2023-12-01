@@ -36,14 +36,23 @@ class user:
         cur.close()
 
     # Reverse actions of Book_tickets() except update the "ticket.cancelled' field instead of deleting entry
-    def Cancel_tickets(self, seat_ids):
-        cur = app.mysql.connection.cursor()
-        for seat in seat_ids:
-            cur.execute("UPDATE seats SET is_occupied = 0 WHERE (theater_id = %s) and (seat_id = %s)", (seat[0], seat[1:]))
-            cur.execute("UPDATE tickets SET cancelled = 1 WHERE (theater_id = %s) and (seat_id = %s)", (seat[0], seat[1:]))
-            self.Update_reward_point(seat, False)
-        app.mysql.connection.commit()
-        cur.close()
+    def Cancel_tickets(self, ticket_id):
+        try:
+            cur = app.mysql.connection.cursor()
+            cur.execute("SELECT * FROM tickets WHERE (ticket_id = %s)", (ticket_id,))
+            ticket = cur.fetchone()
+            if ticket is None or ticket[5] == 1:
+                return False
+            cur.execute("UPDATE seats SET is_occupied = 0 WHERE (theater_id = %s) and (seat_id = %s)", (ticket[2], ticket[3]))
+            cur.execute("UPDATE tickets SET cancelled = 1 WHERE (ticket_id = %s)", (ticket_id,))
+            app.mysql.connection.commit()
+            cur.close()
+            
+            self.Update_reward_point(False)
+            return True
+        except Exception as e:
+            print(e)
+            return False
 
     # P is premium member, R is regular member
     def Buy_membership(self, isUpgrade):
@@ -62,14 +71,21 @@ class user:
         return user[5]
     
     # add one point per dollar spent if buying, subtract if cancelling
-    def Update_reward_point(self, seat, isBuying):
-        cur = app.mysql.connection.cursor()
-        cur.execute("SELECT * FROM tickets WHERE (theater_id = %s) and (seat_id = %s)", (seat[0], seat[1:]))
-        ticket = cur.fetchone()
-        price = int(ticket[1]) if isBuying else -int(ticket[1])
-        cur.execute("UPDATE users SET reward_point = reward_point + %s WHERE (user_id = %s)", (price, self.user_id))
-        app.mysql.connection.commit()
-        cur.close()
+    def Update_reward_point(self, isBuying):
+        try:
+            cur = app.mysql.connection.cursor()
+            cur.execute("SELECT * FROM users WHERE (user_id = %s)", (self.user_id,))
+            user = cur.fetchone()
+            if isBuying:
+                cur.execute("UPDATE users SET reward_point = %s WHERE (user_id = %s)", (user[6] + 1, self.user_id))
+            else:
+                cur.execute("UPDATE users SET reward_point = %s WHERE (user_id = %s)", (user[6] - 1, self.user_id))
+            app.mysql.connection.commit()
+            cur.close()
+            return True
+        except Exception as e:
+            print(e)
+            return False
         
     # Return list of movies watched in past 30 days
     def Get_watch_history(self):

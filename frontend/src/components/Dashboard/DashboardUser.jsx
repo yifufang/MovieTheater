@@ -16,6 +16,7 @@ export default function DashboardUser() {
     } else {
       setIsPremium(false);
     }
+    
   }, []);
 
   return (

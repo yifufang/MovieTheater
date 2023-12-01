@@ -27,7 +27,7 @@ export default function PurchaseHistory() {
       </div>
       <div className="flex flex-col flex-grow overflow-auto">
         {purchase_history.map((purchase) => (
-        <PurchaseBox />
+        <PurchaseBox ticket_id={purchase[0]} price={purchase[1]} cancelled={purchase[5]} ticket_time={purchase[7]} schedule_id={purchase[6]} />
         ))}
 
       </div>
