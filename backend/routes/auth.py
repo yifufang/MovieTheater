@@ -94,6 +94,6 @@ def signup():
 
 @auth.route('/auth/logout', methods=['GET'])
 def logout():
-    if request.method == 'POST':
+    if request.method == 'GET':
         app.redis.flushall()
     return Response(json.dumps({'message': 'successfully logged out'}), status=200)

@@ -7,27 +7,28 @@ from flask import Blueprint, \
     request, \
     json
 from controllers import booking
+from controllers import utility
+from models import user
+from config import app
 
 
 book = Blueprint('book', __name__)
 
+with app.app_context():
+    if app.redis.get('user_id') is not None and utility.check_if_user(app.redis.get('user_id')):
+        user_id = app.redis.get('user_id')
+        user = user(user_id)
 
 @book.route('/book/movies', methods=['POST'])
 def get_theaters_movies():
     if request.method == 'POST':
         theater_id = request.json["theater_id"]
         theaters = booking.get_all_theaters_name_id()
-        theaterA_movies_info = booking.get_movies_info_for_theater_A()
-        theaterB_movies_info = booking.get_movies_info_for_theater_B()
-        theaterC_movies_info = booking.get_movies_info_for_theater_C()
-        theaterD_movies_info = booking.get_movies_info_for_theater_D()
+        theaters_movies_info = utility.get_ALL_film_schedules_movies()
 
         res = {"error": False, 
                "theaters": theaters, 
-               "moviesInfoTheaterA": theaterA_movies_info,
-               "moviesInfoTheaterB": theaterB_movies_info,
-               "moviesInfoTheaterC": theaterC_movies_info,
-               "moviesInfoTheaterD": theaterD_movies_info}
+               "moviesInfoTheater": theaters_movies_info}
         return Response(json.dumps(res), status=200)
 
 @book.route('/book/schedules', methods=['POST'])
@@ -41,6 +42,21 @@ def get_schedules():
 @book.route('/book/seats', methods=['POST'])
 def get_seats():
     if request.method == 'POST':
+        schedule_id = request.json["schedule_id"]
         theater_id = request.json["theater_id"]
-        seats = booking.get_all_seats_given_theaterID(theater_id)
-        return Response(json.dumps(seats), status=200)
+        # get number of occupied seats from tickets table
+        occupied_seats = booking.get_all_occupied_seats_given_scheduleID(schedule_id)
+
+        # get total number of seats from seats table
+        allSeats = booking.get_all_seats_given_theaterID(theater_id)
+        availableSeats = booking.get_available_seats(allSeats, occupied_seats)
+        print(availableSeats)
+        return Response(json.dumps(availableSeats), status=200)
+    
+@book.route('/book/order', methods=['POST'])
+def order_tickets():
+    theater_id = request.json["theater_id"]
+    schedule_id = request.json["schedule_id"]
+    ordered_seats = request.json["ordered_seats"]
+    if request.method == 'POST':
+        user

@@ -9,11 +9,12 @@ from flask import Blueprint, \
 import controllers.utility as utility
 from models.employee import employee
 from models.multiplex import Multiplex
+from controllers import utility
 from config import app
 emp = Blueprint('employee', __name__)
 
 with app.app_context():
-    if app.redis.get('user_id') is not None:
+    if app.redis.get('user_id') is not None and utility.check_if_employee(app.redis.get('user_id')):
         user_id = app.redis.get('user_id')
         Emp = employee(user_id)
 
