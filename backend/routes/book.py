@@ -51,7 +51,6 @@ def get_seats():
         # get total number of seats from seats table
         allSeats = booking.get_all_seats_given_theaterID(theater_id)
         availableSeats = booking.get_available_seats(allSeats, occupied_seats)
-        print(availableSeats)
         return Response(json.dumps(availableSeats), status=200)
     
 @book.route('/book/order', methods=['POST'])
@@ -60,13 +59,11 @@ def order_tickets():
         theater_id = request.json["theater_id"]
         schedule_id = request.json["schedule_id"]
         ordered_seats = request.json["ordered_seats"]
-        print(ordered_seats)
-        print(user.membership)
         if user.membership == 'R':
             print('book ticket')
-            user.Book_tickets(PRICE + SERVICE_FEE, theater_id, ordered_seats, schedule_id)
+            user.Book_tickets(PRICE, theater_id, ordered_seats, schedule_id)
         elif user.membership == 'P':
             print('book ticket')
-            user.Book_tickets(PRICE, theater_id, ordered_seats, schedule_id)
+            user.Book_tickets(PRICE + SERVICE_FEE, theater_id, ordered_seats, schedule_id)
         res = {'error': False, 'message':"succeed"}
         return Response(json.dumps(res), status=200)

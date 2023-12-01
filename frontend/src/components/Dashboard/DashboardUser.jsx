@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import PurchaseHistory from "./PurchaseHistory";
 
 export default function DashboardUser() {
+  const [is_premium, setIsPremium] = useState(false);
   const user_info = JSON.parse(localStorage.getItem("user_info"));
   const Fullname = user_info.first_name + " " + user_info.last_name;
   const email = user_info.email;
   const membership = user_info.membership;
-  const [reward_points, setRewardPoints] = useState(0);
 
-  const [is_premium, setIsPremium] = useState(false);
+  const [reward_points, setRewardPoints] = useState(0);
 
   useEffect(() => {
     if (membership === "P") {
@@ -26,6 +26,7 @@ export default function DashboardUser() {
       .then((response) => response.json())
       .then((data)=>{
         setRewardPoints(data);
+        console.log(data)
       })
       .catch((error) => {
         console.log(error);
