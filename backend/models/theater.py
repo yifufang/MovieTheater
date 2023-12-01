@@ -15,7 +15,6 @@ class theater:
         self.name = theater[0][5]
         self.address = theater[0][6]
 
-    # TODO: implement these methods
     def check_available_seat(self):
         cur = app.mysql.connection.cursor()
         cur.execute(

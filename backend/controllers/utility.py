@@ -24,3 +24,13 @@ def searchQueryMovies(search):
     movies = cur.fetchall()
     cur.close()
     return movies
+
+def check_if_employee(user_id):
+    cur = app.mysql.connection.cursor()
+    cur.execute("SELECT * FROM users WHERE user_id = %s AND membership = 'E'", (user_id,))
+    data = cur.fetchall()
+    cur.close()
+    if data:
+        return True
+    else:
+        return False
