@@ -61,12 +61,16 @@ class user:
 
     # P is premium member, R is regular member
     def Buy_membership(self, isUpgrade):
-        cur = app.mysql.connection.cursor()
-        membership = 'P' if isUpgrade else 'R'
-        cur.execute("UPDATE users SET membership = %s WHERE (user_id = %s)",
-                    (membership, self.user_id))
-        app.mysql.connection.commit()
-        cur.close()
+        try:
+            cur = app.mysql.connection.cursor()
+            membership = 'P' if isUpgrade else 'R'
+            cur.execute("UPDATE users SET membership = %s WHERE (user_id = %s)",(membership, self.user_id))
+            app.mysql.connection.commit()
+            cur.close()
+            return True
+        except Exception as e:
+            print(e)
+            return False
 
     # P is premium member, R is regular member
     def Get_membership(self):

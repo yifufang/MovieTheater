@@ -10,6 +10,7 @@ export default function DashboardUser() {
   const membership = user_info.membership;
 
   const [reward_points, setRewardPoints] = useState(0);
+  const [Membership, setMembership] = useState("");
   const [activeTab, setActiveTab] = useState("PurchaseHistroy");
   const SwitchTab = (tab) => {
     setActiveTab(tab);
@@ -22,7 +23,7 @@ export default function DashboardUser() {
       setIsPremium(false);
     }
 
-    fetch(`http://localhost:5000/member/getRewards`, {
+    fetch(`http://localhost:5000/member/getRewardsMembership`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -30,8 +31,8 @@ export default function DashboardUser() {
     })
       .then((response) => response.json())
       .then((data)=>{
-        setRewardPoints(data);
-        console.log(data)
+        setRewardPoints(data.rewards);
+        setMembership(data.membership);
       })
       .catch((error) => {
         console.log(error);
@@ -64,7 +65,7 @@ export default function DashboardUser() {
           <h1 class="text-4xl font-medium text-gray-700">
             {Fullname}
           </h1>
-          <p class="mt-2 text-gray-500">Membership: {membership}</p>
+          <p class="mt-2 text-gray-500">Membership: {Membership}</p>
           <p class="mt-2 text-gray-500">Email: {email}</p>
           <p class="mt-2 text-gray-500">Reward Points: {reward_points}</p>
         </div>

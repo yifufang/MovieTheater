@@ -49,13 +49,16 @@ def get_schedule_time():
         output = {'message': 'success', 'schedule_time': schedule_time}
         return Response(json.dumps(output), status=200)
 
-@member.route('/member/getRewards', methods=['GET'])
+@member.route('/member/getRewardsMembership', methods=['GET'])
 def getRewards():
     if request.method == 'GET':
         rewards = User.get_reward_point()
-        if rewards is None:
+        membership = User.Get_membership()
+        if rewards is None or membership is None:
             return Response(json.dumps({'message': 'fail'}), status=400)
-        return Response(json.dumps(rewards), status=200)
+        
+        output = {'message':'success','rewards': rewards, 'membership': membership}
+        return Response(json.dumps(output), status=200)
 
 @member.route('/member/WatchHistory', methods=['GET'])
 def WatchHistory():
@@ -66,4 +69,12 @@ def WatchHistory():
         else:
             return Response(json.dumps(history), status=200)
     
-        
+@member.route('/member/changeMembership', methods=['POST'])
+def change_membership():
+    if request.method == 'POST':
+        is_upgrade = request.json['is_upgrade']
+        upgraded = User.Buy_membership(is_upgrade)
+    print(upgraded)
+    output = {'message': 'success'}
+    return Response(json.dumps(output), status=200)
+
