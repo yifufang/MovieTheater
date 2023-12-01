@@ -45,7 +45,7 @@ export default function ScheduleDetail({ movie }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.status === "success") {
+        if (data.message === "success") {
           alert("Add schedule successfully!");
         }
         else {

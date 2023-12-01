@@ -24,24 +24,20 @@ class employee:
     def add_film_to_schedule(self, theater_id, film_id, start_time):
         if theater_id is None or film_id is None or start_time is None:
             return False
-        try:
-            
-            start_time = datetime.strptime(start_time, '%Y-%m-%d %H:%M:%S')
-            cur = app.mysql.connection.cursor()
-            cur.execute("""
-            SELECT COUNT(*) FROM film_schedules WHERE theater_id = %s AND ABS(TIMESTAMPDIFF(HOUR, start_time, %s)) < 2 """, (theater_id, start_time))
-            count = cur.fetchone()[0]
-            if count > 0:
-            # There is a conflicting schedule
-                cur.close()
-                return False
+        start_time = datetime.strptime(start_time, '%Y-%m-%d %H:%M:%S')
+        cur = app.mysql.connection.cursor()
+        cur.execute("""SELECT COUNT(*) FROM film_schedules WHERE theater_id = %s AND ABS(TIMESTAMPDIFF(HOUR, start_time, %s)) < 2 """, (theater_id, start_time))
+        count = cur.fetchone()[0]
+
+        if count > 0:
+            cur.close()
+            return False
+        else:
+            print('inserting even though theres ', count)
             cur.execute("INSERT INTO film_schedules (theater_id, film_id, start_time) VALUES (%s, %s, %s)", (theater_id, film_id, start_time))
             app.mysql.connection.commit()
             cur.close()
             return True
-        except Exception as e:
-            print(e)
-            return False
     
     # remove film from schedule
     def remove_film_from_schedule(self, schedule_id):
