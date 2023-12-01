@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PurchaseHistory from "./PurchaseHistory";
+import WatchHistory from "./WatchHistory";
 
 export default function DashboardUser() {
   const [is_premium, setIsPremium] = useState(false);
@@ -9,6 +10,10 @@ export default function DashboardUser() {
   const membership = user_info.membership;
 
   const [reward_points, setRewardPoints] = useState(0);
+  const [activeTab, setActiveTab] = useState("PurchaseHistroy");
+  const SwitchTab = (tab) => {
+    setActiveTab(tab);
+  };
 
   useEffect(() => {
     if (membership === "P") {
@@ -63,9 +68,33 @@ export default function DashboardUser() {
           <p class="mt-2 text-gray-500">Email: {email}</p>
           <p class="mt-2 text-gray-500">Reward Points: {reward_points}</p>
         </div>
-        
+
+        <div className="flex w-1/2 mx-auto">
+          <button
+            className="focus:text-white p-4 rounded focus:bg-indigo-500 shadow-md flex items-center justify-center"
+            onClick={() => SwitchTab("PurchaseHistroy")}
+          >
+            PurchaseHistory
+          </button>
+          <button
+            className="p-4 rounded bg-white text-indigo-500 shadow-md flex items-center justify-center focus:bg-indigo-500 focus:text-white"
+            onClick={() => SwitchTab("WatchHistory")}
+          >
+            WatchHistory
+          </button>
+        </div>
+
         <div class="mt-12 flex flex-col justify-center">
-          <PurchaseHistory />
+          {activeTab === "PurchaseHistroy" && (
+            <div>
+              <PurchaseHistory />
+            </div>
+          )}
+          {activeTab === "WatchHistory" && (
+            <div>
+              <WatchHistory />
+            </div>
+          )}
         </div>
       </div>
     </div>

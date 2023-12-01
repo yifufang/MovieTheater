@@ -18,7 +18,7 @@ book = Blueprint('book', __name__)
 with app.app_context():
     if app.redis.get('user_id') is not None and utility.check_if_user(app.redis.get('user_id')):
         user_id = app.redis.get('user_id')
-        user = user(user_id)
+        User = user(user_id)
 
 @book.route('/book/movies', methods=['POST'])
 def get_theaters_movies():
@@ -59,11 +59,11 @@ def order_tickets():
         theater_id = request.json["theater_id"]
         schedule_id = request.json["schedule_id"]
         ordered_seats = request.json["ordered_seats"]
-        if user.membership == 'R':
+        if User.membership == 'R':
             print('book ticket')
-            user.Book_tickets(PRICE, theater_id, ordered_seats, schedule_id)
-        elif user.membership == 'P':
+            User.Book_tickets(PRICE, theater_id, ordered_seats, schedule_id)
+        elif User.membership == 'P':
             print('book ticket')
-            user.Book_tickets(PRICE + SERVICE_FEE, theater_id, ordered_seats, schedule_id)
+            User.Book_tickets(PRICE + SERVICE_FEE, theater_id, ordered_seats, schedule_id)
         res = {'error': False, 'message':"succeed"}
         return Response(json.dumps(res), status=200)

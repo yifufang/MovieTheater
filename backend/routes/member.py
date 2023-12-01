@@ -53,6 +53,17 @@ def get_schedule_time():
 def getRewards():
     if request.method == 'GET':
         rewards = User.get_reward_point()
+        if rewards is None:
+            return Response(json.dumps({'message': 'fail'}), status=400)
         return Response(json.dumps(rewards), status=200)
+
+@member.route('/member/WatchHistory', methods=['GET'])
+def WatchHistory():
+    if request.method == 'GET':
+        history = User.Get_watch_history()
+        if history is None:
+            return Response(json.dumps({'message': 'fail'}), status=400)
+        else:
+            return Response(json.dumps(history), status=200)
     
         

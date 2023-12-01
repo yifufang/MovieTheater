@@ -6,7 +6,11 @@ const SeatMap = (props) => {
   const [allSeats, setAllSeats] = useState([]);
 
   function handleSubmit() {
-    console.log(selectedSeats)
+    if(JSON.parse(localStorage.getItem("user_info")) === null){
+      alert("Please login first!");
+      window.location.href = "/auth/login";
+      return;
+    }
     fetch("http://localhost:5000/book/order", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -15,7 +19,7 @@ const SeatMap = (props) => {
       .then((response) => response.json())
       .then((data) => {
         if (!data.error) {
-          console.log(data);
+          alert("Order successfully! Please check your order history for more details.");
         } else {
           alert(data.message);
         }
