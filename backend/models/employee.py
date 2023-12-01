@@ -28,7 +28,6 @@ class employee:
         cur = app.mysql.connection.cursor()
         cur.execute("""SELECT COUNT(*) FROM film_schedules WHERE theater_id = %s AND ABS(TIMESTAMPDIFF(HOUR, start_time, %s)) < 2 """, (theater_id, start_time))
         count = cur.fetchone()[0]
-
         if count > 0:
             cur.close()
             return False

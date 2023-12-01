@@ -25,22 +25,6 @@ Helpful Links:
 - Excel of team info:
   - https://docs.google.com/spreadsheets/d/1qowXku9R0LjOND2gilTmbdbIUMP-fOhZU7j70APLi4w/edit#gid=0
 
-## Backend Project Layout
-
-```
-backend/
-├── app/
-│   ├── __init__.py
-│   ├── routes.py
-│   ├── templates/
-│   │   ├── index.html
-│   ├── static/
-│   │   ├── css/
-│   │   ├── img/
-├── requirements.txt
-├── app.py
-```
-
 ## Prepration for running on windows
 
 - Install Redis Server for windows
@@ -91,44 +75,6 @@ deactivate
 pip freeze > requirements.txt
 ```
 
-## Frontend Project Layout
-
-```
-frontend/
-├── public/
-│   ├── index.html
-├── src/
-│   ├── index.js
-│   ├── App.js
-│   ├── app.css
-│   ├── components/
-│   │   ├── Carousel/
-│   │   │   ├── CarouselDefault.jsx
-│   │   ├── Statistics/
-│   │   │   ├── Statistics.jsx
-│   │   ├── PageLayout/
-│   │   │   ├── Footer.jsx
-│   │   │   ├── PageLayout.jsx
-│   │   │   ├── Header/
-│   │   │   │   ├── Header.jsx
-│   │   │   │   ├── Navbar.jsx
-│   ├── pages/
-│   │   ├── AboutUs.jsx
-│   │   ├── BookTickets.jsx
-│   │   ├── ContactUs.jsx
-│   │   ├── Home.jsx
-│   │   ├── Membership.jsx
-│   │   ├── NotFound.jsx
-│   │   ├── Test.jsx
-│   │   ├── Auth/
-│   │   │   ├──auth.css
-│   │   │   ├──login.jsx
-│   │   │   ├──register.jsx
-├── package.json
-├── package-lock.json
-├── tailwind.config.js
-├── README.md
-```
 
 ## How to run our React Front-end:
 
@@ -146,29 +92,28 @@ npm start
 ```
 
 
-
 ## Front-end routing
 
-### FirstLayer: /
+### Home: /
 
     /
-    /404
-    /View-membership
+    /membership
     /book-tickets
+    /about-us
+    /dashboard
 
-- / homepage display different theaters, location, with current movie schedule, and upcoming movie (slide?)
-  homepage includes a navigation bar: - Home ----> / - membership ---->/view-membership - book tickets ----> /book-tickets - log in ----> /auth/log-in
-- /404 error page
-- /view-membership display the options to buy regular or premium membership
-- /book-tickets buy moview tickets with a online service fee ($1.50 per ticket). display moview title, time, theater name, location, user can choose and buy.
+- / homepage display with current movie schedule, and upcoming movie
+- /membership display the options to buy regular or premium membership
+- /book-tickets buy moview tickets with a online service fee ($1.50 per ticket).
+- /about-us different theaters, location
+- /dashboard depending on the logged in user, it display a different dahsboard and different functionality. user, premium, or employee.
 
 ---
 
-### SecondLayer:
+### Auth:
 
 ##### authentication
 
-    /auth
     /auth/log-in
     /auth/sign-up
 
@@ -177,27 +122,8 @@ npm start
 
 ---
 
-##### member
+### Class Diagram:
 
-    /member
-    /member/book-tickets
-    /member/history reward points
-
-- under /member page, display movies watched last 30 days.
-- under /member/book-tickets, user can view tickets they bought, able to cancel before show time and refund. display movies with tile, time, location, prompt user to choose and buy
-- /member/history, display the purchase history, amount paid, and cumulative reward points. Cumulative rewards are given per dollar of purchase.
+![diagram](./Diagrams/UML%20diagram.png)
 
 ---
-
-##### employee
-
-    /employee
-    /employee/movie-assignment
-    /employee/theater-configuration
-    /employee/dashboard
-
-- /employee/moview-assignment display a bunch of movies, movies are able to be assign to or remove from theaters, display a timeline and schedule.
-- /employee/theater-configuration display a list of theaters, user can select theater, and configure the capacity of that theater. add or remove space from that theater
-- /employee/dashboard display the the movies Theater occupancy for the last 30/60/90 days, Summarized by location, Summarized by movies. Display a table, that includes all movies from last 90 days. able to display a graph of theater occupancy to Specific movie and a graph of occupancy to location.
-
-![frontend-routing](frontend-routes.png)

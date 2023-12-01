@@ -19,15 +19,3 @@ class ticket:
         self.user_id = Ticket[4]
         self.cancelled = Ticket[5]
         self.schedule_id = Ticket[6]
-        self.time_bought = Ticket[7]
-
-        ##optional attribute
-        self.discountable =False
-    
-    ## TODO: calculate price need to consider membership
-    def calculate_price(self):
-        pass
-    
-    ## TODO: check if ticket is discountable
-    def discountable(self):
-        pass
