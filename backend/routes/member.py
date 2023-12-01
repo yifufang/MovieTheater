@@ -48,4 +48,11 @@ def get_schedule_time():
         schedule_time = schedule.get_start_time()
         output = {'message': 'success', 'schedule_time': schedule_time}
         return Response(json.dumps(output), status=200)
+
+@member.route('/member/getRewards', methods=['GET'])
+def getRewards():
+    if request.method == 'GET':
+        rewards = User.get_reward_point()
+        return Response(json.dumps(rewards), status=200)
+    
         

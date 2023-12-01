@@ -9,29 +9,34 @@ export default function PurchaseBox({
 }) {
   const [active, setActive] = useState(false);
 
-
   const HandleCancel = () => {
-    fetch(`http://localhost:5000/member/cancel_ticket`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ticket_id: ticket_id,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.message === "success") {
-          alert("Ticket Cancelled!");
-        } else {
-          alert("Ticket already cancelled or expired!");
-        }
-        window.location.reload();
+    if (!active || cancelled) {
+      alert("Ticket expired or already cancelled!");
+      return;
+    }
+    if (window.confirm("Are you sure you want to cancel this ticket?")) {
+      fetch(`http://localhost:5000/member/cancel_ticket`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ticket_id: ticket_id,
+        }),
       })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.message === "success") {
+            setActive(true);
+            alert("Ticket Cancelled!");
+          } else {
+            alert("Ticket already cancelled or expired!");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
   useEffect(() => {
     fetch(`http://localhost:5000/member/get_schedule_time`, {
@@ -80,9 +85,9 @@ export default function PurchaseBox({
         <p className="font-extrabold text-xl">
           Status:{" "}
           {!active ? (
-            <span className="text-red-500">expired</span>
+            <span className="text-red-500">Date expired</span>
           ) : (
-            <span className="text-green-500">active</span>
+            <span className="text-green-500">non-expired</span>
           )}
         </p>
       </div>

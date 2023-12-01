@@ -6,7 +6,7 @@ export default function DashboardUser() {
   const Fullname = user_info.first_name + " " + user_info.last_name;
   const email = user_info.email;
   const membership = user_info.membership;
-  const reward_points = user_info.reward_points;
+  const [reward_points, setRewardPoints] = useState(0);
 
   const [is_premium, setIsPremium] = useState(false);
 
@@ -16,7 +16,21 @@ export default function DashboardUser() {
     } else {
       setIsPremium(false);
     }
-    
+
+    fetch(`http://localhost:5000/member/getRewards`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data)=>{
+        setRewardPoints(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
   }, []);
 
   return (

@@ -109,3 +109,10 @@ class user:
         tickets = cur.fetchall()
         cur.close()
         return tickets
+
+    def get_reward_point(self):
+        cur = app.mysql.connection.cursor()
+        cur.execute("SELECT * FROM users WHERE (user_id = %s)", (self.user_id,))
+        user = cur.fetchone()
+        cur.close()
+        return user[6]
