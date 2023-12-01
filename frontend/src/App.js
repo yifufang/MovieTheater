@@ -16,9 +16,6 @@ import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Test from "./pages/Test";
 
-//importing dynamic pages
-import MovieDetails from "./pages/dynamicPages/MovieDetails";
-
 export default function App() {
   return (
     <div className="overflow-hidden">
