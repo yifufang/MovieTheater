@@ -17,7 +17,7 @@ def get_film_schedules_given_theaterID_filmID(theater_id, movie_id):
 
 def get_all_occupied_seats_given_scheduleID(schedule_id):
     cur = app.mysql.connection.cursor()
-    cur.execute("SELECT seat_id FROM tickets WHERE schedule_id = %s", (schedule_id,))
+    cur.execute("SELECT seat_id, cancelled FROM tickets WHERE schedule_id = %s", (schedule_id,))
     data = cur.fetchall()
     cur.close()
     return data
@@ -33,7 +33,7 @@ def get_available_seats(allSeats, occupiedSeats):
     available_seats = [list(seat) for seat in allSeats]
     for i in range(len(available_seats)):
         for j in range(len(occupiedSeats)):
-            if occupiedSeats[j][0] == allSeats[i][0]:
+            if occupiedSeats[j][0] == allSeats[i][0] and occupiedSeats[j][1] == 0:
                 available_seats[i][1] = 1
 
     return available_seats

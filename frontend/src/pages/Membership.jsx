@@ -3,13 +3,40 @@ import React, { useState } from "react";
 export default function Membership() {
   const [isRegular, setIsRegular] = useState(true);
   const [isPremium, setIsPremium] = useState(false);
+
   const switchRegular = () => {
     setIsRegular((prev) => !prev);
     setIsPremium((prev) => !prev);
+    fetch("http://localhost:5000/member/changeMembership", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ is_upgrade: isRegular }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (!data.error) {
+          console.log(data);
+        } else {
+          alert(data.message);
+        }
+      });
   };
   const switchPremium = () => {
     setIsPremium((prev) => !prev);
     setIsRegular((prev) => !prev);
+    fetch("http://localhost:5000/member/changeMembership", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ is_upgrade: isRegular }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (!data.error) {
+          console.log(data);
+        } else {
+          alert(data.message);
+        }
+      });
   };
 
   //later we will make api call to update user membership in database
@@ -83,11 +110,17 @@ export default function Membership() {
 
               <div className="mt-[25px]">
                 {isRegular ? (
-                  <button onClick={switchRegular} className="bg-[#E1E3E5] rounded-[5px] py-[15px] px-[25px] text-[#fff] text-[14px] leading-[17px] font-semibold">
+                  <button
+                    onClick={switchRegular}
+                    className="bg-[#E1E3E5] rounded-[5px] py-[15px] px-[25px] text-[#fff] text-[14px] leading-[17px] font-semibold"
+                  >
                     Current Plan
                   </button>
                 ) : (
-                  <button onClick={switchRegular} className="bg-[#006EF5] rounded-[5px] py-[15px] px-[25px] text-[#fff] text-[14px] leading-[17px] font-semibold">
+                  <button
+                    onClick={switchRegular}
+                    className="bg-[#006EF5] rounded-[5px] py-[15px] px-[25px] text-[#fff] text-[14px] leading-[17px] font-semibold"
+                  >
                     Downgrade -
                   </button>
                 )}
@@ -153,11 +186,17 @@ export default function Membership() {
 
               <div className="mt-[25px]">
                 {isPremium ? (
-                  <button onClick={switchPremium} className="bg-[#E1E3E5] rounded-[5px] py-[15px] px-[25px] text-[#fff] text-[14px] leading-[17px] font-semibold">
+                  <button
+                    onClick={switchPremium}
+                    className="bg-[#E1E3E5] rounded-[5px] py-[15px] px-[25px] text-[#fff] text-[14px] leading-[17px] font-semibold"
+                  >
                     Current Plan
                   </button>
                 ) : (
-                  <button onClick={switchPremium} className="bg-[#006EF5] rounded-[5px] py-[15px] px-[25px] text-[#fff] text-[14px] leading-[17px] font-semibold">
+                  <button
+                    onClick={switchPremium}
+                    className="bg-[#006EF5] rounded-[5px] py-[15px] px-[25px] text-[#fff] text-[14px] leading-[17px] font-semibold"
+                  >
                     Upgrade +
                   </button>
                 )}

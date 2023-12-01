@@ -55,4 +55,11 @@ def getRewards():
         rewards = User.get_reward_point()
         return Response(json.dumps(rewards), status=200)
     
-        
+@member.route('/member/changeMembership', methods=['POST'])
+def change_membership():
+    if request.method == 'POST':
+        is_upgrade = request.json['is_upgrade']
+        User.Buy_membership(is_upgrade)
+    output = {'message': 'success'}
+    return Response(json.dumps(output), status=200)
+

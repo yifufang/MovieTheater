@@ -18,7 +18,7 @@ book = Blueprint('book', __name__)
 with app.app_context():
     if app.redis.get('user_id') is not None and utility.check_if_user(app.redis.get('user_id')):
         user_id = app.redis.get('user_id')
-        user = user(user_id)
+        User = user(user_id)
 
 @book.route('/book/movies', methods=['POST'])
 def get_theaters_movies():
@@ -51,7 +51,8 @@ def get_seats():
         # get total number of seats from seats table
         allSeats = booking.get_all_seats_given_theaterID(theater_id)
         availableSeats = booking.get_available_seats(allSeats, occupied_seats)
-        return Response(json.dumps(availableSeats), status=200)
+        res = {'error': False, 'seats': availableSeats, 'membership': User.membership}
+        return Response(json.dumps(res), status=200)
     
 @book.route('/book/order', methods=['POST'])
 def order_tickets():
@@ -59,11 +60,22 @@ def order_tickets():
         theater_id = request.json["theater_id"]
         schedule_id = request.json["schedule_id"]
         ordered_seats = request.json["ordered_seats"]
+        payment_method = request.json["payment_method"]
         if user.membership == 'R':
             print('book ticket')
-            user.Book_tickets(PRICE, theater_id, ordered_seats, schedule_id)
+            user.Book_tickets(PRICE, theater_id, ordered_seats, schedule_id, payment_method)
         elif user.membership == 'P':
             print('book ticket')
-            user.Book_tickets(PRICE + SERVICE_FEE, theater_id, ordered_seats, schedule_id)
+            user.Book_tickets(PRICE + SERVICE_FEE, theater_id, ordered_seats, schedule_id, payment_method)
         res = {'error': False, 'message':"succeed"}
         return Response(json.dumps(res), status=200)
+
+
+@book.route('/book/price', methods=['GET'])
+def get_single_ticket_price():
+    if request.method == 'GET':
+        if user.membership == 'R':
+            price = PRICE
+        elif user.membership == 'P':
+            price = PRICE + SERVICE_FEE
+        return Response(json.dumps(price), status=200)

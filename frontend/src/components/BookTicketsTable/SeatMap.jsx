@@ -1,16 +1,41 @@
 import React, { useState, useEffect } from "react";
 import Seat from "./Seat";
+import PaymentWindow from "./PaymentWindow";
 
 const SeatMap = (props) => {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [allSeats, setAllSeats] = useState([]);
+  const [paymentMethod, setPaymentMethod] = useState();
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [membership, setMembership] = useState();
+
+  // call back function
+  const updatePaymentMethod = (dataFromPaymentWindow) => {
+    setPaymentMethod(dataFromPaymentWindow);
+  };
+
+  function convertData(seats) {
+    let seatsList = [];
+    seats.map((seat) =>
+      seatsList.push({
+        id: seat[0],
+        isReserved: seat[1],
+      })
+    );
+    return seatsList;
+  }
 
   function handleSubmit() {
-    console.log(selectedSeats)
+    console.log(paymentMethod);
     fetch("http://localhost:5000/book/order", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ theater_id: props.theaterSelected, schedule_id: props.scheduleId, ordered_seats: selectedSeats }),
+      body: JSON.stringify({
+        theater_id: props.theaterSelected,
+        schedule_id: props.scheduleId,
+        ordered_seats: props.selectedSeats,
+        payment_method: paymentMethod,
+      }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -20,20 +45,10 @@ const SeatMap = (props) => {
           alert(data.message);
         }
       });
+    alert("order succeed");
   }
 
-  function convertData(seats) {
-    let seatsList = [];
-    seats.map((seat) => (
-      seatsList.push({
-        id: seat[0],
-        isReserved: seat[1],
-      })
-    ));
-    return seatsList;
-  }
-
-  const handleSeatSelect = (seatId) => {
+  const handleSeatSelect = (seatId, price) => {
     // Check if the seat is already selected
     if (selectedSeats.includes(seatId)) {
       setSelectedSeats(selectedSeats.filter((id) => id !== seatId));
@@ -47,13 +62,17 @@ const SeatMap = (props) => {
     fetch("http://localhost:5000/book/seats", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ schedule_id: props.scheduleId, theater_id: props.theaterSelected }),
+      body: JSON.stringify({
+        schedule_id: props.scheduleId,
+        theater_id: props.theaterSelected,
+      }),
     })
       .then((response) => response.json())
       .then((data) => {
         if (!data.error) {
           console.log(data);
-          setAllSeats(convertData(data));
+          setAllSeats(convertData(data.seats));
+          setMembership(data.membership);
         } else {
           alert(data.message);
         }
@@ -72,13 +91,20 @@ const SeatMap = (props) => {
               isReserved={seat.isReserved}
               isSelected={selectedSeats.includes(seat.id)}
               onSelect={handleSeatSelect}
+              membership={membership}
             />
           ))}
         </div>
         <p className="mt-4">Selected Seats: {selectedSeats.join(", ")}</p>
       </div>
+      <div>
+      </div>
+      <PaymentWindow onUpdate={updatePaymentMethod} />
       <div className="flex justify-center p-5">
-        <button onClick={handleSubmit} className="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex mb-2 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+        <button
+          onClick={handleSubmit}
+          className="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex mb-2 text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
+        >
           Book Selected Seats
         </button>
       </div>

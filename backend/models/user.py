@@ -41,7 +41,7 @@ class user:
             print(e)
             return False
         
-    def Book_tickets(self, price, theater_id, seat_ids, schedule_id):
+    def Book_tickets(self, price, theater_id, seat_ids, schedule_id, payment_method, enough_reward):
         for seat_id in seat_ids:
             cur = app.mysql.connection.cursor()
             # cur.execute("UPDATE seats SET is_occupied = 1 WHERE (theater_id = %s) and (seat_id = %s)", (seat[0], seat[1:]))
@@ -55,8 +55,10 @@ class user:
 
     # P is premium member, R is regular member
     def Buy_membership(self, isUpgrade):
+        print(isUpgrade)
         cur = app.mysql.connection.cursor()
         membership = 'P' if isUpgrade else 'R'
+        print(membership)
         cur.execute("UPDATE users SET membership = %s WHERE (user_id = %s)", (membership, self.user_id))
         app.mysql.connection.commit()
         cur.close()
