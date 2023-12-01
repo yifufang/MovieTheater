@@ -5,7 +5,7 @@ class movie:
     def __init__(self, film_id):
         # open database connection, and fetch data from database
         cur = app.mysql.connection.cursor()
-        cur.execute("SELECT * FROM films WHERE film_id = %s", (film_id,))
+        cur.execute("SELECT * FROM movies WHERE film_id = %s", (film_id,))
         film = cur.fetchone()
         cur.close()
         if film is None:

@@ -16,6 +16,7 @@ from routes.auth import auth
 from routes.emp import emp
 from routes.other import other
 from routes.book import book
+from routes.member import member
 
 from models.employee import employee
 from models.user import user
@@ -47,6 +48,7 @@ app.register_blueprint(auth)
 app.register_blueprint(emp)
 app.register_blueprint(other)
 app.register_blueprint(book)
+app.register_blueprint(member)
 
 
 if __name__ == '__main__':

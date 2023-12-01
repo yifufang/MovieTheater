@@ -5,7 +5,7 @@ class filmSchedule:
     def __init__(self, schedule_id):
         # open database connection, and fetch data from database
         cur = app.mysql.connection.cursor()
-        cur.execute("SELECT * FROM film_schedule WHERE schedule_id = %s", (schedule_id,))
+        cur.execute("SELECT * FROM film_schedules WHERE schedule_id = %s", (schedule_id,))
         film_schedule = cur.fetchone()
         cur.close()
         if film_schedule is None:
@@ -16,6 +16,9 @@ class filmSchedule:
         self.film_id = film_schedule[2]
         self.start_time = film_schedule[3]
         ##optional attribute
+
+    def get_start_time(self):
+        return self.start_time
 
         
         

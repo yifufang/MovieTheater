@@ -27,7 +27,6 @@ def get_all_seats_given_theaterID(theater_id):
     cur.execute("SELECT seat_id, is_occupied FROM seats WHERE theater_id = %s", (theater_id,))
     data = cur.fetchall()
     cur.close()
-    print(data)
     return data
 
 def get_available_seats(allSeats, occupiedSeats):
