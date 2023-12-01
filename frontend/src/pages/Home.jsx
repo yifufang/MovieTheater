@@ -23,7 +23,7 @@ export default function Home() {
     <div className="mb-10">
       <CarouselDefault />
       <CarouselMovies title={'NOW PLAYING'} movieList={moviesList}/>
-      <CarouselMovies title={'POPULAR'} movieList={moviesList}/>
+      <CarouselMovies title={'UPCOMMING'} movieList={moviesList.slice().reverse()}/>
       <Statistics />
     </div>
 

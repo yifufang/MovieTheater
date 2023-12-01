@@ -39,6 +39,9 @@ export default function AboutUs() {
   }, []);
   return (
     <section className="text-gray-600 body-font">
+      <h1 className="text-3xl font-medium title-font text-gray-900 mb-12 text-center">
+        About Our Theaters
+      </h1>
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-wrap -m-4">
           {
