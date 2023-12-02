@@ -6,24 +6,61 @@ The system can manage multiplexes in many locations i.e. each location has multi
 """
 
 Instructor:
-
 - Gopinath Vinodh, Classroom: ENG 325
 
-Team Alpha:
+Group Name: 
+- Team Alpha
 
-- Jena Kelbessa
-- Jiajun Dai
-- Yifu Fang
-- Anthony Zunino
+Members + Summary of Contributions (for each team member):
+Yifu Fang:
+Yifu took charge of the project architecture. He created the outline for the frontend and backend, researched improvements to the design with Tailwind, wrote the implementation of the Dashboard for employee and users, and handled most of the communication between the frontend requests and backend responses.
+
+Jiajun Dai:
+Jiajun worked on the Book Tickets and Employee Scheduling and Actions implementation. Jai was incredible at giving tons of feedback and answered most of the team questions within minutes. Jai also filled the database with mock data and filled out the film schedules.
+
+Anthony Zunino:
+Anthony worked on login and registration with server sided session tokens (cookies) to authenticate the user requests to the backend. Wrote the backend query requests for the user table. Anthony also tracked all Scrum meetings and maintained project deliverables.
+
+Jena Kelbessa:
+Jena worked on user authentication at the beginning of the project and helped ask questions on the logistics of the architecture. Created the skeleton for the login page.
+
+Feature Set:
+View pages (home, buy tickets, buy membership, user profile), book tickets, cancel ticket, login, register, upgrade membership, downgrade membership, view purchased movies, view user dashboard, view admin dashboard, admin add theater, admin change seat occupancy, admin add movie, admin cancel movie, configure discount prices
 
 Helpful Links:
 
 - Github link:
   - https://github.com/gopinathsjsu/teamproject-team-alpha-1
+- Link to Project Journal (also contains Project Board and Task Sheet):
+  - https://github.com/gopinathsjsu/teamproject-team-alpha-1/blob/main/ScrumMeeting/TeamAlphaProjectJournal.pdf
+
 - Syllabus:
   - https://sjsu.instructure.com/courses/1570055/files/74025430?wrap=1
 - Excel of team info:
   - https://docs.google.com/spreadsheets/d/1qowXku9R0LjOND2gilTmbdbIUMP-fOhZU7j70APLi4w/edit#gid=0
+
+---
+
+### Class Diagram:
+
+![diagram](./Diagrams/UML%20diagram.png)
+
+---
+
+### UI Wireframe:
+
+![diagram](./Diagrams/TeamAlphaWireframe.pdf)
+
+---
+
+### Cloud Deployment Screenshots:
+
+![diagram](./Diagrams/cmpe202frontend_Heroku_Deployment.png)
+
+
+![diagram](./Diagrams/cmpe202frontend_Heroku_Deployment_Compile_Error.png)
+
+---
 
 ## Prepration for running on windows
 
@@ -119,11 +156,3 @@ npm start
 
 - /auth/login display the inputbox username and passward. user can select the method of login as admin or member
 - /auth/sign-up display the signup page prompt user to sign up, then save the data on database.
-
----
-
-### Class Diagram:
-
-![diagram](./Diagrams/UML%20diagram.png)
-
----
