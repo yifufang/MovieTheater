@@ -49,17 +49,19 @@ Helpful Links:
 
 ### UI Wireframe:
 
-![diagram](./Diagrams/TeamAlphaWireframe.pdf)
+![diagram](./Diagrams/TeamAlphaWireframe-1.png)
 
 ---
 
 ### Cloud Deployment Screenshots:
 
 ![diagram](./Diagrams/cmpe202frontend_Heroku_Deployment.png)
-
-
 ![diagram](./Diagrams/cmpe202frontend_Heroku_Deployment_Compile_Error.png)
+![diagram](./Diagrams/unable_to_start_Backend.png)
+![diagram](./Diagrams/frontend%20deploy.png)
 
+- We had deployed the frontend to the cloud.
+- but theres issue deploy backend
 ---
 
 ## Prepration for running on windows
