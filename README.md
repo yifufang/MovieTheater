@@ -1,8 +1,12 @@
 CMPE-202-1 Class Project - Movie Theater end-to-end
+
 Due: 12/1/23
+
 """
+
 Team Alpha's project repo for implementing an end2end MovieTheater Club application for your favorite movie theater chain.
 The system can manage multiplexes in many locations i.e. each location has multiple screens.
+
 """
 
 Instructor:
