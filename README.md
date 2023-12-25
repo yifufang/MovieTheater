@@ -1,7 +1,3 @@
-CMPE-202-1 Class Project - Movie Theater end-to-end
-
-Due: 12/1/23
-
 """
 
 Team Alpha's project repo for implementing an end2end MovieTheater Club application for your favorite movie theater chain.
@@ -51,17 +47,6 @@ Helpful Links:
 
 ![diagram](./Diagrams/TeamAlphaWireframe-1.png)
 
----
-
-### Cloud Deployment Screenshots:
-
-![diagram](./Diagrams/cmpe202frontend_Heroku_Deployment.png)
-![diagram](./Diagrams/cmpe202frontend_Heroku_Deployment_Compile_Error.png)
-![diagram](./Diagrams/unable_to_start_Backend.png)
-![diagram](./Diagrams/frontend%20deploy.png)
-
-- We had deployed the frontend to the cloud.
-- but theres issue deploy backend
 ---
 
 ## Prepration for running on windows
