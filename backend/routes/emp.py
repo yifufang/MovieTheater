@@ -12,10 +12,6 @@ from models.multiplex import Multiplex
 from config import app
 emp = Blueprint('employee', __name__)
 
-with app.app_context():
-    if app.redis.get('user_id') is not None and utility.check_if_employee(app.redis.get('user_id')):
-        user_id = app.redis.get('user_id')
-        Emp = employee(user_id)
 
 @emp.route('/employee/search')
 def search():
@@ -29,7 +25,9 @@ def schedule():
         theater_id = request.json['theater_id']
         film_id = request.json['movie_id']
         start_time = request.json['start_time']
-
+        if app.redis.get('user_id') is not None and utility.check_if_employee(app.redis.get('user_id')):
+            user_id = app.redis.get('user_id')
+            Emp = employee(user_id)
         inserted = Emp.add_film_to_schedule(theater_id, film_id, start_time)
 
         if inserted:
@@ -49,6 +47,9 @@ def ALL_MOVIE_SCHEDULE():
 def Remove():
     if request.method == 'DELETE':
         schedule_id = request.json['schedule_id']
+        if app.redis.get('user_id') is not None and utility.check_if_employee(app.redis.get('user_id')):
+            user_id = app.redis.get('user_id')
+            Emp = employee(user_id)
         deleted = Emp.remove_film_from_schedule(schedule_id)
         if deleted: 
             output = {'message': 'success'}
@@ -62,6 +63,9 @@ def addSeat():
     if request.method == 'POST':
         theater_id = request.json['theater_id']
         number_of_seats = request.json['number_of_seats']
+        if app.redis.get('user_id') is not None and utility.check_if_employee(app.redis.get('user_id')):
+            user_id = app.redis.get('user_id')
+            Emp = employee(user_id)
         added = Emp.add_seats_to_theater(theater_id, number_of_seats)
         if added:
             output = {'message': 'success'}
@@ -75,6 +79,9 @@ def removeSeat():
     if request.method == 'DELETE':
         theater_id = request.json['theater_id']
         number_of_seats = request.json['number_of_seats']
+        if app.redis.get('user_id') is not None and utility.check_if_employee(app.redis.get('user_id')):
+            user_id = app.redis.get('user_id')
+            Emp = employee(user_id)
         removed = Emp.remove_seats_from_theater(theater_id, number_of_seats)
         if removed:
             output = {'message': 'success'}

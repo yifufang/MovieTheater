@@ -22,21 +22,22 @@ export default function DashboardUser() {
     } else {
       setIsPremium(false);
     }
-
-    fetch(`http://localhost:5000/member/getRewardsMembership`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data)=>{
-        setRewardPoints(data.rewards);
-        setMembership(data.membership);
+    if(membership !== "E"){
+      fetch(`http://localhost:5000/member/getRewardsMembership`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then((response) => response.json())
+        .then((data)=>{
+          setRewardPoints(data.rewards);
+          setMembership(data.membership);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      }
 
   }, []);
 

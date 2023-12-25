@@ -3,8 +3,10 @@ import PurchaseBox from "./PurchaseBox";
 
 export default function PurchaseHistory() {
     const [purchase_history, setPurchaseHistory] = useState([]);
-
+    const user_info = JSON.parse(localStorage.getItem("user_info"));
+    const membership = user_info.membership;
     useEffect(() => {
+      if(membership !== "E"){
         fetch(`http://localhost:5000/member/purchase_history`, {
             method: "GET",
             headers: {
@@ -18,6 +20,7 @@ export default function PurchaseHistory() {
             .catch((error) => {
                 console.log(error);
             });
+        }
     }, []);
 
   return (

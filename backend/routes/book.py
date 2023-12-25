@@ -15,10 +15,6 @@ PRICE = 10
 SERVICE_FEE = 1.5
 book = Blueprint('book', __name__)
 
-with app.app_context():
-    if app.redis.get('user_id') is not None and utility.check_if_user(app.redis.get('user_id')):
-        user_id = app.redis.get('user_id')
-        User = user(user_id)
 
 @book.route('/book/movies', methods=['POST'])
 def get_theaters_movies():
@@ -59,6 +55,9 @@ def order_tickets():
         theater_id = request.json["theater_id"]
         schedule_id = request.json["schedule_id"]
         ordered_seats = request.json["ordered_seats"]
+        if app.redis.get('user_id') is not None and utility.check_if_user(app.redis.get('user_id')):
+            user_id = app.redis.get('user_id')
+            User = user(user_id)
         if User.membership == 'R':
             print('book ticket')
             User.Book_tickets(PRICE, theater_id, ordered_seats, schedule_id)

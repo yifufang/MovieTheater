@@ -8,19 +8,18 @@ from flask import Blueprint, \
     json
 from models.user import user
 from models.filmSchedule import filmSchedule
+from controllers import utility
 from config import app
 
 member = Blueprint('member', __name__)
-
-with app.app_context():
-    if app.redis.get('user_id') is not None:
-        user_id = app.redis.get('user_id')
-        User = user(user_id)
 
 
 @member.route('/member/purchase_history', methods=['GET'])
 def purchase_history():
     if request.method == 'GET':
+        if app.redis.get('user_id') is not None and utility.check_if_user(app.redis.get('user_id')):
+            user_id = app.redis.get('user_id')
+            User = user(user_id)
         history = User.Get_purchase_history()
         return Response(json.dumps(history), status=200)
 
@@ -28,6 +27,9 @@ def purchase_history():
 def cancel_ticket():
     if request.method == 'PUT':
         ticket_id = request.json['ticket_id']
+        if app.redis.get('user_id') is not None and utility.check_if_user(app.redis.get('user_id')):
+            user_id = app.redis.get('user_id')
+            User = user(user_id)
         cancelled = User.Cancel_tickets(ticket_id)
         if cancelled:
             output = {'message': 'success'}
@@ -52,6 +54,9 @@ def get_schedule_time():
 @member.route('/member/getRewardsMembership', methods=['GET'])
 def getRewards():
     if request.method == 'GET':
+        if app.redis.get('user_id') is not None and utility.check_if_user(app.redis.get('user_id')):
+            user_id = app.redis.get('user_id')
+            User = user(user_id)
         rewards = User.get_reward_point()
         membership = User.Get_membership()
         if rewards is None or membership is None:
@@ -63,6 +68,9 @@ def getRewards():
 @member.route('/member/WatchHistory', methods=['GET'])
 def WatchHistory():
     if request.method == 'GET':
+        if app.redis.get('user_id') is not None and utility.check_if_user(app.redis.get('user_id')):
+            user_id = app.redis.get('user_id')
+            User = user(user_id)
         history = User.Get_watch_history()
         if history is None:
             return Response(json.dumps({'message': 'fail'}), status=400)
@@ -73,6 +81,9 @@ def WatchHistory():
 def change_membership():
     if request.method == 'POST':
         is_upgrade = request.json['is_upgrade']
+        if app.redis.get('user_id') is not None and utility.check_if_user(app.redis.get('user_id')):
+            user_id = app.redis.get('user_id')
+            User = user(user_id)
         upgraded = User.Buy_membership(is_upgrade)
     print(upgraded)
     output = {'message': 'success'}
